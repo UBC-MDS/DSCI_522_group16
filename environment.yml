@@ -1,0 +1,8 @@
+name: project522
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+prefix: C:\Users\shoin\miniconda3\envs\project522
