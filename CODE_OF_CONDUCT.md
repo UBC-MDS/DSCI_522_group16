@@ -1,6 +1,6 @@
 # Code of Conduct
 
-As a part of Data Science community, we pledge to cerate an inclusive and welcoming environment, where all the contributors can feel safe and comfortable, regardless of their age, gender identity, disability, ethnicity, level of experience, or nationality. We respect and embrace differences at any level, and aim to establish growing and respecting community. 
+As a part of Data Science community, we pledge to create an inclusive and welcoming environment, where all the contributors can feel safe and comfortable, regardless of their age, gender identity, disability, ethnicity, level of experience, or nationality. We respect and embrace differences at any level, and aim to establish growing and respecting community. 
 
 ## Expected Behaviours
 
