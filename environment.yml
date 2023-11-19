@@ -28,6 +28,7 @@ dependencies:
   - spacy
   - xgboost
   - catboost
+  - seaborn
   - pip:
     - mglearn
     - spacymoji
