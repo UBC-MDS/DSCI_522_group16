@@ -18,7 +18,7 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found here (https://github.com/UBC-MDS/DSCI_522_group16/tree/main/src/portugal_wine_quality_predictor.html).
+The final report can be found here (https://github.com/UBC-MDS/DSCI_522_group16/blob/main/src/portugal_wine_quality_predictor.pdf).
 
 
 ## Example Usage
@@ -42,11 +42,20 @@ Python and packages listed in environment.yml
 
 
 ## License
-MIT License for the code.
-The Report and the Portugal White Wine Quality Predictor materials here are licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. If re-using/re-mixing please provide attribution and link to this webpage.
+The code on portugal_wine_quality_predictor files are licensed under a MIT License.
+
+The Report and the Portugal White Wine Quality Predictor materials here are licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. 
+
+If re-using/re-mixing please provide attribution and link to this webpage.
 
 
 ## References
 Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. Decision Support Systems. DOI: https://doi.org/10.24432/C56S3T
 
 Dua, Dheeru, and Casey Graff. 2019. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. https://archive.ics.uci.edu/dataset/186/wine+quality.
+
+WSET Global. (n.d.). WSET systematic approach to tasting (SAT). Retrieved from https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/ed: Mystery Tasting. (n.d.). WSET SAT explained. Retrieved from https://www.mysterytasting.com/wset-sat-explainace.
+
+MDS-2023-24. (2023). MDS Lecture Notes on GitHub repository. Retrieved from https://github.ubc.ca/MDS-2023-24.
+
+Fan, J. (1996). Local Polynomial Modelling and Its Applications: From linear regression to nonlinear regression. Monographs on Statistics and Applied Probability. Chapman & Hall/CRC. ISBN 978-0-412-98321-4.
