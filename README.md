@@ -23,10 +23,13 @@ To run the project first time, you should be set up the environment by run the f
 
 conda env create --file environment.yml
 
+
 To run this Portugal Wine Quality Predictor project analysis, run the following from the root of this repository:
 
 conda activate portugal_white_wine_quality_predictor
+
 jupyter lab 
+
 Open src/portugal_white_wine_quality_predictor.ipynb in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
 ## List of Dependencies Needed
