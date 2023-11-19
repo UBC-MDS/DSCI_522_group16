@@ -1,4 +1,4 @@
-name: portugal_white_wine_quality_predictor
+name: 522_group-16
 channels:
   - conda-forge
   - defaults
