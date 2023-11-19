@@ -18,7 +18,7 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found here (https://github.com/UBC-MDS/DSCI_522_group16/blob/main/src/portugal_white_wine_quality_predictor.pdf).
+The final report can be found here ([https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/src/portugal_white_wine_quality_predictor.html]).
 
 
 ## Example Usage
