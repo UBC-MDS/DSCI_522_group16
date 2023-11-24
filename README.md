@@ -35,11 +35,8 @@ jupyter lab
 Open src/portugal_white_wine_quality_predictor.ipynb in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
 
-## List of Dependencies Needed
-conda (version 23.9.0 or higher)
-nb_conda_kernels (version 2.3.1 or higher)
-Python and packages listed in environment.yml
-
+## Dependencies
+We use Docker to build the container to manage the software dependencies for this project. This project's Docker image is based on the quay.io/jupyter/minimal-notebook image along with the specified additional dependencies in the Dockerfile, which called dependencies list from environment.yml file. 
 
 ## License
 The code on portugal_wine_quality_predictor files are licensed under a MIT License.
