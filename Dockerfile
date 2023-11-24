@@ -3,7 +3,7 @@
 # 2. Nicole Tu
 # 3. Sho Inagaki
 
-FROM quay.io/jupyter/minimal-notebook:2023-11-22
+FROM quay.io/jupyter/minimal-notebook:2023-11-19
 
 RUN conda install -y python=3.11.4 \
     pandas=2.1.2 \ 
@@ -20,4 +20,8 @@ RUN conda install -y python=3.11.4 \
     scikit-learn=1.3.2 \
     requests=2.31.0 \
     jinja2=3.1.2 \
-    seaborn=0.12.2 
+    seaborn=0.12.2 \
+    jupyterlab=4.0.5 \
+    jupyterlab-git=0.41.0 \
+    jupyterlab-spellchecker=0.8.4 \
+    jupytext=1.15.1
