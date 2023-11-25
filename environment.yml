@@ -9,6 +9,7 @@ dependencies:
   - ipykernel=6.26.0
   - nb_conda_kernels=2.3.1
   - numpy=1.25.2
+  - pytest=7.4.0
   - altair=5.1.2
   - vl-convert-python=0.14.0  # For saving altair charts as images
   - vegafusion=1.4.2  # For charts > 5,000 graphical objects
