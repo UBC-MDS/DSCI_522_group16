@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.externals import joblib
+import pickle  # Use pickle for loading models
 from sklearn.metrics import r2_score, mean_absolute_error
 import click
 import os
@@ -20,12 +20,13 @@ def test_and_deploy(model_file, x_test_file, y_test_file):
     Returns:
         None
     """
-    # Load the best model
-    best_model = joblib.load(model_file)
+    # Load the trained model using pickle
+    with open(model_file, 'rb') as model_file:
+        best_model = pickle.load(model_file)
 
     # Load test data
     x_test = pd.read_csv(x_test_file)
-    y_test = pd.read_csv(y_test_file, header=None, squeeze=True)  # Assuming y_test is a single-column DataFrame
+    y_test = pd.read_csv(y_test_file)  # Assuming y_test is a single-column DataFrame
 
     # Make predictions on the test data
     y_pred = best_model.predict(x_test)
@@ -52,4 +53,4 @@ if __name__ == '__main__':
     test_and_deploy()
 
 # In terminal at root directory of the project:
-#python script/test_and_deploy.py results/models/model_output.joblib data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+# python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv

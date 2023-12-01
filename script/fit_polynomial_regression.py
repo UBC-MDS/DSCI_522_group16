@@ -1,5 +1,6 @@
 import pandas as pd
-from sklearn.externals import joblib  # Use joblib for saving the model
+import numpy as np
+import pickle  # Use pickle for saving the model
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.pipeline import make_pipeline
 from sklearn.compose import make_column_transformer
@@ -24,8 +25,8 @@ def polynomial_regression(train_file, test_file):
         None
     """
     # Load data
-    white_train = pd.read_csv(train_file, sep=';')
-    white_test = pd.read_csv(test_file, sep=';')
+    white_train = pd.read_csv(train_file, sep=',')
+    white_test = pd.read_csv(test_file, sep=',')
 
     # Drop redundant feature
     white_train = white_train.drop(columns=["free sulfur dioxide"])
@@ -66,9 +67,10 @@ def polynomial_regression(train_file, test_file):
     random_search.fit(x_train_w, y_train_w)
     
    # Save the best model to the results/models/ directory
-    model_output = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'models', 'best_model.joblib')
+    model_output = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'models', 'best_model.pkl')
     os.makedirs(os.path.dirname(model_output), exist_ok=True)  # Create directory if it doesn't exist
-    joblib.dump(random_search.best_estimator_, model_output)
+    with open(model_output, 'wb') as model_file:
+        pickle.dump(random_search.best_estimator_, model_file)
 
     # Display the best hyperparameters
     print("Best Hyperparameters:")
@@ -76,6 +78,7 @@ def polynomial_regression(train_file, test_file):
 
 if __name__ == '__main__':
     polynomial_regression()
+
 
 # In terminal at root directory of the project:
 # python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv

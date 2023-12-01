@@ -49,7 +49,7 @@ def eda_script(file_path):
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Load white wine dataset
-    white_train = pd.read_csv(file_path, sep=';')
+    white_train = pd.read_csv(file_path, sep=',')
 
     # Display head of the dataset
     print("Head of the dataset:")
