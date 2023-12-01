@@ -24,3 +24,4 @@ dependencies:
   - jupyterlab-git=0.41.0
   - jupyterlab-spellchecker=0.8.4
   - jupytext=1.15.1
+  - click=8.1.7
