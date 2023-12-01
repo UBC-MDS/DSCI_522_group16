@@ -11,9 +11,9 @@ dependencies:
   - numpy=1.25.2
   - pytest=7.4.0
   - altair=5.1.2
-  - vl-convert-python=0.14.0  # For saving altair charts as images
-  - vegafusion=1.4.2  # For charts > 5,000 graphical objects
-  - vegafusion-python-embed=1.4.2  # For charts > 5,000 graphical objects
+  - vl-convert-python=0.14.0 
+  - vegafusion=1.4.2  
+  - vegafusion-python-embed=1.4.2  
   - scipy=1.11.3
   - matplotlib=3.8.2
   - scikit-learn=1.3.2
@@ -25,3 +25,7 @@ dependencies:
   - jupyterlab-spellchecker=0.8.4
   - jupytext=1.15.1
   - click=8.1.7
+  - notebook=6.5.4
+  - responses=0.13.3
+  - vegafusion-jupyter=1.4.5
+  - jupyter-book=0.15.1
