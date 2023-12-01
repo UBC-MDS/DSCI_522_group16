@@ -3,12 +3,8 @@ import altair as alt
 import click
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
-@click.command()
-@click.argument('data')
-@click.argument('columns') 
-@click.option('--width', default=100, help='Width of the chart')
-@click.option('--height', default=100, help='Height of the chart')
 def create_repeated_scatter_chart(data, columns, width, height):
     """
     Create a repeated scatter chart using Altair.
@@ -49,6 +45,9 @@ def eda_script(file_path):
     Returns:
         None
     """
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
     # Load white wine dataset
     white_train = pd.read_csv(file_path, sep=';')
 
@@ -56,14 +55,22 @@ def eda_script(file_path):
     print("Head of the dataset:")
     print(white_train.head())
 
-    # Visualize correlation
+    # Visualize correlation and save it as a table
     print("\nCorrelation matrix:")
-    print(white_train.corr())
+    correlation_matrix = white_train.corr()
+    print(correlation_matrix)
+
+    # Save correlation matrix as a CSV file
+    correlation_path = os.path.join(script_dir, '..', 'results', 'tables', 'correlation_matrix.csv')
+    os.makedirs(os.path.dirname(correlation_path), exist_ok=True)
+    correlation_matrix.to_csv(correlation_path, index=False)
 
     # Scatter Matrix
     columns_to_repeat = ['density', 'residual sugar', 'total sulfur dioxide', 'quality']
-    chart = create_repeated_scatter_chart(white_train, columns_to_repeat)
-    chart.save("scatter_matrix.html")  # Save the chart as an HTML file
+    chart = create_repeated_scatter_chart(white_train, columns_to_repeat, width=100, height=100)
+    scatter_matrix_path = os.path.join(script_dir, '..', 'results', 'figures', 'scatter_matrix.html')
+    os.makedirs(os.path.dirname(scatter_matrix_path), exist_ok=True)
+    chart.save(scatter_matrix_path)
 
     # Create a histogram for each column
     for column in white_train.columns:
@@ -72,7 +79,15 @@ def eda_script(file_path):
         plt.title(f'Distribution of {column}')
         plt.xlabel(column)
         plt.ylabel('Frequency')
+
+        # Save the histogram as a PNG file
+        histogram_path = os.path.join(script_dir, '..', 'results', 'figures', f'histogram_{column}.png')
+        os.makedirs(os.path.dirname(histogram_path), exist_ok=True)
+        plt.savefig(histogram_path)
         plt.show()
 
 if __name__ == '__main__':
     eda_script()
+
+# In terminal, set current working directory as the root of git repo:
+# python script/eda.py data/Processed/white_train.csv
