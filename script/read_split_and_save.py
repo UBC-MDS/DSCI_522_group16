@@ -31,6 +31,8 @@ def process_white_wine(file_path, dropna, info, split_data):
     if info:
         print(white_wine.info())
 
+
+
     if split_data:
         # Split data into train and test sets
         white_train, white_test = train_test_split(white_wine, train_size=0.70, random_state=123)

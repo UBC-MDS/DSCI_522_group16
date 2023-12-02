@@ -59,13 +59,13 @@ def evaluate_model(model_file, x_file, y_file):
     results_dir = os.path.join(script_dir, '..', 'results', 'tables')
     os.makedirs(results_dir, exist_ok=True)
     
-    score_table.to_csv(os.path.join(results_dir, 'score_table.csv'), index=False)
+    score_table.to_csv(os.path.join(results_dir, 'score_table.csv'), index=True)
 
     # Calculate mean scores
     result = score_table.mean(axis=1).to_frame()
     mean_scores = result.rename(columns={0: "mean_value"})
     print(mean_scores)
-    mean_scores.to_csv(os.path.join(results_dir, 'mean_scores.csv'), index=False)
+    mean_scores.to_csv(os.path.join(results_dir, 'mean_scores.csv'), index=True)
 
 if __name__ == '__main__':
     evaluate_model()

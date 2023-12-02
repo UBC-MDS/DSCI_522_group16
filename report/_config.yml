@@ -1,0 +1,10 @@
+title: "Predicting Portugal white wine quality"
+author: "Kittipong Wongwipasamitkun, Nicole Tu, Sho Inagaki"
+date: "2023-12-03"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+execute:
+  execute_notebooks: force 
+bibtex_bibfiles:
+    - references.bib

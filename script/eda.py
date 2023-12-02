@@ -63,12 +63,13 @@ def eda_script(file_path):
     # Save correlation matrix as a CSV file
     correlation_path = os.path.join(script_dir, '..', 'results', 'tables', 'correlation_matrix.csv')
     os.makedirs(os.path.dirname(correlation_path), exist_ok=True)
-    correlation_matrix.to_csv(correlation_path, index=False)
+    correlation_matrix.to_csv(correlation_path, index=True)
 
     # Scatter Matrix
     columns_to_repeat = ['density', 'residual sugar', 'total sulfur dioxide', 'quality']
     chart = create_repeated_scatter_chart(white_train, columns_to_repeat, width=100, height=100)
-    scatter_matrix_path = os.path.join(script_dir, '..', 'results', 'figures', 'scatter_matrix.html')
+    # scatter_matrix_path = os.path.join(script_dir, '..', 'results', 'figures', 'scatter_matrix.html')
+    scatter_matrix_path = os.path.join(script_dir, '..', 'results', 'figures', 'scatter_matrix.png')
     os.makedirs(os.path.dirname(scatter_matrix_path), exist_ok=True)
     chart.save(scatter_matrix_path)
 
