@@ -39,11 +39,11 @@ if __name__ == '__main__':
 
 # Use in Jupyter:
 # download data as zip and extract
-#url = "https://archive.ics.uci.edu/dataset/186/wine+quality/wine+quality.zip"
+#url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
 #download_and_extract_data(url, "../data/raw")
 
 #original code for download_and_extract_data(): 
-# url = "https://archive.ics.uci.edu/dataset/186/wine+quality/wine+quality.zip"
+# url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
 # request = requests.get(url)
 # with open("../data/raw/wine+quality.zip", 'wb') as f:
 #     f.write(request.content)

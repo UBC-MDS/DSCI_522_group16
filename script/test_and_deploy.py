@@ -45,7 +45,7 @@ def test_and_deploy(model_file, x_test_file, y_test_file):
     tables_dir = os.path.join(script_dir, '..', 'results', 'tables')
     os.makedirs(tables_dir, exist_ok=True)
 
-    test_scores.to_csv(os.path.join(tables_dir, 'test_scores.csv'), index=False)
+    test_scores.to_csv(os.path.join(tables_dir, 'test_scores.csv'), index=True)
     print("Test scores saved to 'results/tables/test_scores.csv'.")
     print(test_scores)
 
