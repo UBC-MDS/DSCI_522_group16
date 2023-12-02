@@ -44,9 +44,7 @@ To run the project first time, you should be
 docker compose up jupyter-lab
 ```
 
-2. After executed the above command, in your terminal, please copy the URL that start with `http://127.0.0.1:8888/lab?token=` (as shown in the highlighted text in the example below) and paste it into your browser
-
-<img src="img/jupyter-container-web-app-launch-url.png" width=400>
+2. After executed the above command, in your terminal, please copy the URL that start with `http://127.0.0.1:8888/lab?token=` and paste it into your browser
 
 3. Run the analysis,
 In the command terminal at the repository directory in your local machine, enter the following command:
