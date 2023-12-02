@@ -16,7 +16,13 @@ on:
       - main
     paths: 
       - 'Dockerfile'
-      
+      - 'environment.yml'
+  pull_request:
+    branches: 
+      - 'main'
+    paths: 
+      - 'Dockerfile'
+      - 'environment.yml'
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
