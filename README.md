@@ -8,7 +8,7 @@
 
 
 ## Summary of the Project
-Lab1 Data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program (2023-2024) at the University of British Columbia.
+The Data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program (2023-2024) at the University of British Columbia.
 
 
 ## About
@@ -18,30 +18,102 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found here ([https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/src/portugal_white_wine_quality_predictor.html]).
-
-
-## Example Usage
-To run the project first time, you should be set up the environment by run the following from the root of this repository:
-
-conda env create --file environment.yml
-
-To run this Portugal Wine Quality Predictor project analysis, run the following from the root of this repository:
-
-conda activate portugal_white_wine_quality_predictor
-
-jupyter lab 
-
-Open src/portugal_white_wine_quality_predictor.ipynb in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+The final report can be found [here] (https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/src/portugal_white_wine_quality_predictor.html).
 
 
 ## Dependencies
-We use Docker to build the container to manage the software dependencies for this project. This project's Docker image is based on the quay.io/jupyter/minimal-notebook image along with the specified additional dependencies in the Dockerfile, which called dependencies list from environment.yml file. 
+We use [Docker] (https://docker.com) to build the container to manage the software dependencies for this project. This project's Docker image is based on the `quay.io/jupyter/minimal-notebook` image along with the specified additional dependencies in the [`Dockerfile`](Dockerfile), which called dependencies list from [`environment.yml`](environment.yml). 
+
+
+## Usage
+
+#### SET UP
+
+To run the project first time, you should be  
+
+1. [Install](https://www.docker.com/get-started/) and launch Docker on your computer.
+
+2. Then you should clone this GitHub repository.
+
+
+#### HOW TO RUN THE ANALYSIS
+
+1. By using command line terminal, please go to the clone repository directory on your local machine and enter the following command:
+
+``` 
+docker compose up jupyter-lab
+```
+
+2. After executed the above command, in your terminal, please copy the URL that start with `http://127.0.0.1:8888/lab?token=` (as shown in the highlighted text in the example below) and paste it into your browser
+
+<img src="img/jupyter-container-web-app-launch-url.png" width=400>
+
+3. Run the analysis,
+In the command terminal at the repository directory in your local machine, enter the following command:
+
+# download and extract data:
+python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/raw
+
+# assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.
+python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
+
+# perform eda and save plots:
+python script/eda.py data/Processed/white_train.csv
+
+# train model, find best parameters, and save the model:
+python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
+
+# evaluate the model with best parameters on train data and save the scores:
+python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
+
+# evaluate the model on test data and save results:
+python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
+
+#### Clean up (Shut down the container and clean up the resources) 
+
+In the terminal where you used the container, type `Cntrl` + `C`, follow by type `docker compose rm`
+
+> #### Note
+> There is an alternative way via VS Code to run a one-time command within a service defined in a Docker Compose configuration file. 
+> In VS Code, go to the repository folder and launch the container there by using the command:
+>
+> ```
+> docker compose run --rm terminal bash
+>```
+>
+> After finished, in the terminal, exit the container by type `exit`.
+
+
+## Developer notes
+
+#### Adding a new dependency
+
+1. Add the new dependency to the `environment.yml` file, on which `DockerFile` file has linked to, on a new branch.
+
+2. In your local machine, re-build the Docker image to ensure it builds and smoothly runs without any problem.
+
+3. Push the changes to the remote repository (GitHub). 
+   The new Docker image will be constructed and pushed to Docker Hub automatically.
+   There will be tagged with SHA on this commit.
+
+4. Update the new container image on your branch in the `docker-compose.yml` file (Ensure to update the tag specifically).
+
+5. Merge the changes into the `main` branch by sending the pull request. 
+
+#### Running the tests
+
+At the repository directory, in the terminal, all tests are run by the `pytest` command. 
+See more details on [`tests`](tests) directory.
+
 
 ## License
-The code on portugal_wine_quality_predictor files are licensed under a MIT License.
+The code on portugal_wine_quality_predictor files are licensed under a MIT License. See the [the license file](LICENSE.md) for more information.
 
-The Report and the Portugal White Wine Quality Predictor materials here are licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license. 
+The Report and the Portugal White Wine Quality Predictor materials here are licensed under a [Creative Commons Attribution 4.0 International (CC BY 4.0)] (https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [the license file](LICENSE.md).
 
 If re-using/re-mixing please provide attribution and link to this webpage.
 
