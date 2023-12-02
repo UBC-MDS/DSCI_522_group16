@@ -1,0 +1,22 @@
+services:
+  jupyter-lab:
+    image: tyjnico/portugal_white_wine_quality_predictor_py:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan/work
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
+
+  terminal:
+    image: tyjnico/portugal_white_wine_quality_predictor_py:latest
+    volumes:
+      - .:/home/jovyan/work
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
