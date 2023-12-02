@@ -51,11 +51,27 @@ docker compose up jupyter-lab
 3. Run the analysis,
 In the command terminal at the repository directory in your local machine, enter the following command:
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# download and extract data:
+python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/raw
 
-running process need to add later
+# assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.
+python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# perform eda and save plots:
+python script/eda.py data/Processed/white_train.csv
+
+# train model, find best parameters, and save the model:
+python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
+
+# evaluate the model with best parameters on train data and save the scores:
+python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
+
+# evaluate the model on test data and save results:
+python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
 
 #### Clean up (Shut down the container and clean up the resources) 
 
