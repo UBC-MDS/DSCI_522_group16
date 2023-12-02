@@ -16,6 +16,11 @@ on:
       - main
     paths: 
       - 'Dockerfile'
+  pull_request:
+    branches: 
+      - 'main'
+    paths: 
+      - 'Dockerfile'
       
 jobs:
   push_to_registry:
