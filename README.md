@@ -51,27 +51,29 @@ docker compose up jupyter-lab
 3. Run the analysis,
 In the command terminal at the repository directory in your local machine, enter the following command:
 
-# download and extract data:
+#### download and extract data:
 python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/raw
 
-# assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.
+#### assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.
 python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
 
-# perform eda and save plots:
+#### perform eda and save plots:
 python script/eda.py data/Processed/white_train.csv
 
-# train model, find best parameters, and save the model:
+#### train model, find best parameters, and save the model:
 python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
 
-# evaluate the model with best parameters on train data and save the scores:
+#### evaluate the model with best parameters on train data and save the scores:
 python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
 
-# evaluate the model on test data and save results:
+#### evaluate the model on test data and save results:
 python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
 
-# build HTML report and copy build to docs folder
+#### build HTML report and copy build to docs folder
 jupyter-book build report
+
 cp -r report/_build/html/* docs
+
 
 #### Clean up (Shut down the container and clean up the resources) 
 
@@ -100,7 +102,7 @@ In the terminal where you used the container, type `Cntrl` + `C`, follow by type
    The new Docker image will be constructed and pushed to Docker Hub automatically.
    There will be tagged with SHA on this commit.
 
-4. It will update the new container image on your branch in the `docker-compose.yml` file automatically as it stated as the latest.
+4. It will update the new container image on your branch in the [`docker-compose.yml`](docker-compose.yml) file automatically as it stated as the latest.
 
 #### Running the tests
 
@@ -111,7 +113,7 @@ See more details on [`tests`](tests) directory.
 ## License
 The code on portugal_wine_quality_predictor files are licensed under a MIT License. See the [the license file](LICENSE.md) for more information.
 
-The Report and the Portugal White Wine Quality Predictor materials here are licensed under a [Creative Commons Attribution 4.0 International (CC BY 4.0)] (https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [the license file](LICENSE.md).
+The Report and the Portugal White Wine Quality Predictor materials here are licensed under a [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. See the [the license file](LICENSE.md).
 
 If re-using/re-mixing please provide attribution and link to this webpage.
 
