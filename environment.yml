@@ -29,3 +29,6 @@ dependencies:
   - responses=0.13.3
   - vegafusion-jupyter=1.4.5
   - jupyter-book=0.15.1
+  - myst-nb=0.17.2
+  - six=1.16.0
+  - os=0.1.4
