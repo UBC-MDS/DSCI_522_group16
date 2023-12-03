@@ -1,6 +1,6 @@
 services:
   jupyter-lab:
-    image: tyjnico/portugal_white_wine_quality_predictor_py:latest
+    image: tyjnico/portugal_white_wine_quality_predictor_py:3e27683
     ports:
       - "8888:8888"
     volumes:
@@ -12,7 +12,7 @@ services:
     platform: linux/amd64
 
   terminal:
-    image: tyjnico/portugal_white_wine_quality_predictor_py:latest
+    image: tyjnico/portugal_white_wine_quality_predictor_py:3e27683
     volumes:
       - .:/home/jovyan/work
     deploy:

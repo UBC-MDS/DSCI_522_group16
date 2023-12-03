@@ -18,7 +18,7 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found [here](https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/report/_build/_page/portugal_white_wine_quality_predictor_report/html/portugal_white_wine_quality_predictor_report.html).
+The final report can be found [here](https://rawcdn.githack.com/UBC-MDS/portugal_white_wine_quality_predictor_py/8f098a7da456a3dcbe0863817da5203760776339/report/_build/_page/portugal_white_wine_quality_predictor_report/html/portugal_white_wine_quality_predictor_report.html).
 
 
 ## Dependencies
@@ -41,7 +41,7 @@ To run the project first time, you should be
 1. By using command line terminal, please go to the clone repository directory on your local machine and enter the following command:
 
 ``` 
-docker compose up jupyter-lab
+docker compose up
 ```
 
 2. After executed the above command, in your terminal, please copy the URL that start with `http://127.0.0.1:8888/lab?token=` and paste it into your browser
