@@ -18,11 +18,11 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found [here](https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/src/portugal_white_wine_quality_predictor.html).
+The final report can be found [here](https://htmlpreview.github.io/?https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py/blob/main/report/_build/_page/portugal_white_wine_quality_predictor_report/html/portugal_white_wine_quality_predictor_report.html).
 
 
 ## Dependencies
-We use [Docker](https://docker.com) to build the container to manage the software dependencies for this project. This project's Docker image is based on the `quay.io/jupyter/minimal-notebook` image along with the specified additional dependencies in the [`Dockerfile`](Dockerfile), which called dependencies list from [`environment.yml`](environment.yml). 
+We use [Docker](https://docker.com) to build the container to manage the software dependencies for this project. This project's Docker image is based on the `quay.io/jupyter/minimal-notebook` image along with the specified additional dependencies in the [`Dockerfile`](Dockerfile).
 
 
 ## Usage
