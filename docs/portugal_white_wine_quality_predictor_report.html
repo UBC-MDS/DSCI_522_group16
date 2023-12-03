@@ -1,0 +1,1400 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Predicting Portugal white wine quality &#8212; Predicting Portugal white wine quality</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'portugal_white_wine_quality_predictor_report';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Predicting Portugal white wine quality</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Predicting Portugal white wine quality
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/portugal_white_wine_quality_predictor_report.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicting Portugal white wine quality</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting Portugal white wine quality</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="predicting-portugal-white-wine-quality">
+<h1>Predicting Portugal white wine quality<a class="headerlink" href="#predicting-portugal-white-wine-quality" title="Permalink to this heading">#</a></h1>
+<p>by Kittipong Wongwipasamitkun, Nicole Tu, Sho Inagaki
+2023/12/02</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.32
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.36
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.33
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.72
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.73
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
+<p>We tried to make the classification model using the Polynomial Regression with Ridge Regularization algorithm with Randomized Search Hyperparameters which can predict Portugal white wine quality rating (on scale 0-10) through the physicochemical properties of the test wine. The model has trained on the Portugal white wine data set with 4898 observations. In the conclusion, the model performance is not quite good enough both on training data and on an unseen test data set with the test score at around <span class="pasted-text">0.32</span> with the average train <span class="math notranslate nohighlight">\(R^2\)</span> at <span class="pasted-text">0.36</span> and the average test <span class="math notranslate nohighlight">\(R^2\)</span> at <span class="pasted-text">0.33</span> also with high root MSE and MSE (Mean Squared Error).</p>
+<p>The reason we suspect the model cannot predict well is that the wine quality can be judge widely and vary depends on each individual preference taste. Moreover, there is no standard on the taste, for example, high or low in acidity or alcohol level or sulfur level cannot indicate the wine is in good quality or not (It can be both ways!!). As such, we believe this model is at, or close to, the starter required for studying further and could run more collected data to analyze the combination of physicochemical properties which will announce quality of the wine, although more researches need to improve the model performance and understand the characteristics of incorrectly predicted pattern would be in need to investigate further.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
+<p>Referring to WSET (the Wine &amp; Spirits Education Trust), Wine tasting notes can be described by Systematic Approach to Tasting (SAT) (<a class="reference external" href="https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf">https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf</a>) , which is consisted of</p>
+<ol class="arabic simple">
+<li><p>Appearance (colour, clarity, intensity, and other observations)</p></li>
+<li><p>Nose (condition, intensity, aroma characteristics, aroma development)</p></li>
+<li><p>Palate (sweetness, acidity, tannin, alcohol, body, flavour intensity, flavour characteristics, finish, and other observations)</p></li>
+<li><p>Conclusion (quality, readiness for drinking and potential for ageing).</p></li>
+</ol>
+<p>The wine quality which is in the conclusion part, consists mainly on Balance, Length, Intensity and Complexity (BLIC). The result of these qualities, all came from the chemical components in the wine. Subsequently, nowadays, the quality of wine can be determined roughly from the physicochemical components of the wine.</p>
+<p>As the physicochemical properties have been related to the wine quality, so we aim to create a machine learning algorithm to predict the quality of wine from the measurement of physicochemical values. Answering this question can help both customers and winemakers to screen or adjust or make decision to the prior wine quality rating derived from the model according to its physicochemical values.</p>
+<p>This machine learning algorithm will aim to study only the Portugal white wine to reduce biased from the types of wine and the origin sources of wine as the start point to assess the quality of wine via its physicochemical features.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="methods">
+<h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h1>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<p>This data set used in this project is related to white vinho verde wine samples from the north of Portugal created By P. Cortez, A. Cerdeira, Fernando Almeida, Telmo Matos, J. Reis. 2009. The dataset was sourced from  website for downloading these datasets is the UC Irvine Machine Learning Repository (<a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a>). In addition, these datasets stored the physicochemical properties data on wines and the quality rating to compare and make the quality prediction model.</p>
+</section>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<p>As we have many variables to concern and most of them have correlation to the target quality, which it is best to not drop these correlated features.
+Also in the real world with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality. The reason we use polynomial regression rather than a linear regression is that it allows us to capture more complex relationships between the predictors and the target variable. By introducing polynomial terms, we can account for non-linear patterns that might exist in the data, enabling the model to better fit the intricacies of wine quality prediction. Moreover, polynomial regression provides greater flexibility, allowing us to uncover potential curvilinear associations between features and the quality of wine, which a linear regression might overlook. This approach enhances our ability to create a more nuanced and accurate predictive model for wine quality assessment.
+Therefore, we choose the <strong>Polynomial regression with ridge regularization</strong> to reduce the effect of multicolinearity, and use <strong>Random search</strong> to optimize the hyperparameters. Data was partitioned by 70% for the training set and 30% for the test set. All variables were standardized just prior to model fitting. The Python programming language (Van Rossum and Drake 2009) and the following Python packages were used to perform the analysis: numpy(Harris et al. 2020), Pandas (McKinney 2010), altair (VanderPlas, 2018), scikit-learn (Pedregosa et al. 2011). The code used to perform the analysis and create this report can be found here: <a class="github reference external" href="https://github.com/UBC-MDS/DSCI_522_group16/tree/main/src/portugal_wine_quality_predictor.ipynb">UBC-MDS/DSCI_522_group16</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
+<p>We tried to find out whether each of the physicochemical properties might be useful to predict the wine quality rating. We examined the data set that it doesn’t have Null value or any adjustment needed for any values. After that we make a correlation matrix for all the variables in this data set to recognize the pattern or choose to drop some variable out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/correlation_matrix.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_a2be8_row0_col0, #T_a2be8_row1_col1, #T_a2be8_row2_col2, #T_a2be8_row3_col3, #T_a2be8_row4_col4, #T_a2be8_row5_col5, #T_a2be8_row6_col6, #T_a2be8_row7_col7, #T_a2be8_row8_col8, #T_a2be8_row9_col9, #T_a2be8_row10_col10, #T_a2be8_row11_col11 {
+  background-color: #023858;
+  color: #f1f1f1;
+}
+#T_a2be8_row0_col1 {
+  background-color: #e7e3f0;
+  color: #000000;
+}
+#T_a2be8_row0_col2 {
+  background-color: #9fbad9;
+  color: #000000;
+}
+#T_a2be8_row0_col3, #T_a2be8_row8_col7 {
+  background-color: #a4bcda;
+  color: #000000;
+}
+#T_a2be8_row0_col4, #T_a2be8_row2_col5, #T_a2be8_row9_col4, #T_a2be8_row11_col7 {
+  background-color: #c9cee4;
+  color: #000000;
+}
+#T_a2be8_row0_col5 {
+  background-color: #e6e2ef;
+  color: #000000;
+}
+#T_a2be8_row0_col6 {
+  background-color: #a5bddb;
+  color: #000000;
+}
+#T_a2be8_row0_col7 {
+  background-color: #4897c4;
+  color: #f1f1f1;
+}
+#T_a2be8_row0_col8, #T_a2be8_row1_col9, #T_a2be8_row7_col10, #T_a2be8_row7_col11, #T_a2be8_row8_col0, #T_a2be8_row8_col2, #T_a2be8_row10_col3, #T_a2be8_row10_col4, #T_a2be8_row10_col5, #T_a2be8_row10_col6, #T_a2be8_row10_col7, #T_a2be8_row11_col1 {
+  background-color: #fff7fb;
+  color: #000000;
+}
+#T_a2be8_row0_col9, #T_a2be8_row1_col2 {
+  background-color: #fbf4f9;
+  color: #000000;
+}
+#T_a2be8_row0_col10, #T_a2be8_row3_col0, #T_a2be8_row4_col3, #T_a2be8_row11_col8 {
+  background-color: #a9bfdc;
+  color: #000000;
+}
+#T_a2be8_row0_col11, #T_a2be8_row11_col2 {
+  background-color: #eae6f1;
+  color: #000000;
+}
+#T_a2be8_row1_col0 {
+  background-color: #c5cce3;
+  color: #000000;
+}
+#T_a2be8_row1_col3 {
+  background-color: #acc0dd;
+  color: #000000;
+}
+#T_a2be8_row1_col4, #T_a2be8_row3_col4 {
+  background-color: #bbc7e0;
+  color: #000000;
+}
+#T_a2be8_row1_col5 {
+  background-color: #ece7f2;
+  color: #000000;
+}
+#T_a2be8_row1_col6 {
+  background-color: #a7bddb;
+  color: #000000;
+}
+#T_a2be8_row1_col7 {
+  background-color: #86b0d3;
+  color: #000000;
+}
+#T_a2be8_row1_col8, #T_a2be8_row4_col5 {
+  background-color: #c8cde4;
+  color: #000000;
+}
+#T_a2be8_row1_col10 {
+  background-color: #80aed2;
+  color: #f1f1f1;
+}
+#T_a2be8_row1_col11 {
+  background-color: #f4edf6;
+  color: #000000;
+}
+#T_a2be8_row2_col0 {
+  background-color: #75a9cf;
+  color: #f1f1f1;
+}
+#T_a2be8_row2_col1 {
+  background-color: #f9f2f8;
+  color: #000000;
+}
+#T_a2be8_row2_col3 {
+  background-color: #a1bbda;
+  color: #000000;
+}
+#T_a2be8_row2_col4 {
+  background-color: #adc1dd;
+  color: #000000;
+}
+#T_a2be8_row2_col6 {
+  background-color: #9ebad9;
+  color: #000000;
+}
+#T_a2be8_row2_col7 {
+  background-color: #65a3cb;
+  color: #f1f1f1;
+}
+#T_a2be8_row2_col8 {
+  background-color: #e1dfed;
+  color: #000000;
+}
+#T_a2be8_row2_col9 {
+  background-color: #efe9f3;
+  color: #000000;
+}
+#T_a2be8_row2_col10, #T_a2be8_row10_col8 {
+  background-color: #a2bcda;
+  color: #000000;
+}
+#T_a2be8_row2_col11, #T_a2be8_row8_col5, #T_a2be8_row8_col9, #T_a2be8_row10_col0, #T_a2be8_row11_col0 {
+  background-color: #d9d8ea;
+  color: #000000;
+}
+#T_a2be8_row3_col1, #T_a2be8_row10_col1 {
+  background-color: #d8d7e9;
+  color: #000000;
+}
+#T_a2be8_row3_col2 {
+  background-color: #d2d2e7;
+  color: #000000;
+}
+#T_a2be8_row3_col5, #T_a2be8_row7_col5 {
+  background-color: #93b5d6;
+  color: #000000;
+}
+#T_a2be8_row3_col6, #T_a2be8_row6_col3 {
+  background-color: #4a98c5;
+  color: #f1f1f1;
+}
+#T_a2be8_row3_col7 {
+  background-color: #034f7d;
+  color: #f1f1f1;
+}
+#T_a2be8_row3_col8, #T_a2be8_row3_col11 {
+  background-color: #e5e1ef;
+  color: #000000;
+}
+#T_a2be8_row3_col9 {
+  background-color: #fcf4fa;
+  color: #000000;
+}
+#T_a2be8_row3_col10, #T_a2be8_row6_col9, #T_a2be8_row8_col3 {
+  background-color: #e0deed;
+  color: #000000;
+}
+#T_a2be8_row4_col0, #T_a2be8_row5_col8 {
+  background-color: #bcc7e1;
+  color: #000000;
+}
+#T_a2be8_row4_col1, #T_a2be8_row4_col8, #T_a2be8_row5_col2, #T_a2be8_row7_col8 {
+  background-color: #d5d5e8;
+  color: #000000;
+}
+#T_a2be8_row4_col2, #T_a2be8_row5_col0 {
+  background-color: #cdd0e5;
+  color: #000000;
+}
+#T_a2be8_row4_col6 {
+  background-color: #89b1d4;
+  color: #000000;
+}
+#T_a2be8_row4_col7 {
+  background-color: #509ac6;
+  color: #f1f1f1;
+}
+#T_a2be8_row4_col9 {
+  background-color: #f5eff6;
+  color: #000000;
+}
+#T_a2be8_row4_col10 {
+  background-color: #d2d3e7;
+  color: #000000;
+}
+#T_a2be8_row4_col11, #T_a2be8_row10_col2 {
+  background-color: #f4eef6;
+  color: #000000;
+}
+#T_a2be8_row5_col1, #T_a2be8_row6_col11 {
+  background-color: #f1ebf5;
+  color: #000000;
+}
+#T_a2be8_row5_col3, #T_a2be8_row8_col10 {
+  background-color: #71a8ce;
+  color: #f1f1f1;
+}
+#T_a2be8_row5_col4 {
+  background-color: #b4c4df;
+  color: #000000;
+}
+#T_a2be8_row5_col6 {
+  background-color: #0872b1;
+  color: #f1f1f1;
+}
+#T_a2be8_row5_col7 {
+  background-color: #4496c3;
+  color: #f1f1f1;
+}
+#T_a2be8_row5_col9, #T_a2be8_row11_col4 {
+  background-color: #eee9f3;
+  color: #000000;
+}
+#T_a2be8_row5_col10 {
+  background-color: #c0c9e2;
+  color: #000000;
+}
+#T_a2be8_row5_col11 {
+  background-color: #d4d4e8;
+  color: #000000;
+}
+#T_a2be8_row6_col0 {
+  background-color: #abbfdc;
+  color: #000000;
+}
+#T_a2be8_row6_col1 {
+  background-color: #d3d4e7;
+  color: #000000;
+}
+#T_a2be8_row6_col2, #T_a2be8_row9_col5 {
+  background-color: #d0d1e6;
+  color: #000000;
+}
+#T_a2be8_row6_col4 {
+  background-color: #9cb9d9;
+  color: #000000;
+}
+#T_a2be8_row6_col5 {
+  background-color: #1b7eb7;
+  color: #f1f1f1;
+}
+#T_a2be8_row6_col7 {
+  background-color: #0c74b2;
+  color: #f1f1f1;
+}
+#T_a2be8_row6_col8 {
+  background-color: #bdc8e1;
+  color: #000000;
+}
+#T_a2be8_row6_col10 {
+  background-color: #e0dded;
+  color: #000000;
+}
+#T_a2be8_row7_col0 {
+  background-color: #79abd0;
+  color: #f1f1f1;
+}
+#T_a2be8_row7_col1 {
+  background-color: #dedcec;
+  color: #000000;
+}
+#T_a2be8_row7_col2 {
+  background-color: #c4cbe3;
+  color: #000000;
+}
+#T_a2be8_row7_col3 {
+  background-color: #045585;
+  color: #f1f1f1;
+}
+#T_a2be8_row7_col4 {
+  background-color: #8cb3d5;
+  color: #000000;
+}
+#T_a2be8_row7_col6 {
+  background-color: #2383ba;
+  color: #f1f1f1;
+}
+#T_a2be8_row7_col9, #T_a2be8_row11_col9 {
+  background-color: #eee8f3;
+  color: #000000;
+}
+#T_a2be8_row8_col1 {
+  background-color: #e9e5f1;
+  color: #000000;
+}
+#T_a2be8_row8_col4 {
+  background-color: #dfddec;
+  color: #000000;
+}
+#T_a2be8_row8_col6 {
+  background-color: #b8c6e0;
+  color: #000000;
+}
+#T_a2be8_row8_col11 {
+  background-color: #bfc9e1;
+  color: #000000;
+}
+#T_a2be8_row9_col0, #T_a2be8_row9_col11 {
+  background-color: #c6cce3;
+  color: #000000;
+}
+#T_a2be8_row9_col1 {
+  background-color: #ede7f2;
+  color: #000000;
+}
+#T_a2be8_row9_col2, #T_a2be8_row11_col5 {
+  background-color: #dad9ea;
+  color: #000000;
+}
+#T_a2be8_row9_col3 {
+  background-color: #c1cae2;
+  color: #000000;
+}
+#T_a2be8_row9_col6 {
+  background-color: #99b8d8;
+  color: #000000;
+}
+#T_a2be8_row9_col7 {
+  background-color: #7dacd1;
+  color: #f1f1f1;
+}
+#T_a2be8_row9_col8 {
+  background-color: #96b6d7;
+  color: #000000;
+}
+#T_a2be8_row9_col10 {
+  background-color: #91b5d6;
+  color: #000000;
+}
+#T_a2be8_row10_col9 {
+  background-color: #faf3f9;
+  color: #000000;
+}
+#T_a2be8_row10_col11 {
+  background-color: #589ec8;
+  color: #f1f1f1;
+}
+#T_a2be8_row11_col3 {
+  background-color: #ced0e6;
+  color: #000000;
+}
+#T_a2be8_row11_col6 {
+  background-color: #dddbec;
+  color: #000000;
+}
+#T_a2be8_row11_col10 {
+  background-color: #2182b9;
+  color: #f1f1f1;
+}
+</style>
+<table id="T_a2be8">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_a2be8_level0_col0" class="col_heading level0 col0" >fixed acidity</th>
+      <th id="T_a2be8_level0_col1" class="col_heading level0 col1" >volatile acidity</th>
+      <th id="T_a2be8_level0_col2" class="col_heading level0 col2" >citric acid</th>
+      <th id="T_a2be8_level0_col3" class="col_heading level0 col3" >residual sugar</th>
+      <th id="T_a2be8_level0_col4" class="col_heading level0 col4" >chlorides</th>
+      <th id="T_a2be8_level0_col5" class="col_heading level0 col5" >free sulfur dioxide</th>
+      <th id="T_a2be8_level0_col6" class="col_heading level0 col6" >total sulfur dioxide</th>
+      <th id="T_a2be8_level0_col7" class="col_heading level0 col7" >density</th>
+      <th id="T_a2be8_level0_col8" class="col_heading level0 col8" >pH</th>
+      <th id="T_a2be8_level0_col9" class="col_heading level0 col9" >sulphates</th>
+      <th id="T_a2be8_level0_col10" class="col_heading level0 col10" >alcohol</th>
+      <th id="T_a2be8_level0_col11" class="col_heading level0 col11" >quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a2be8_level0_row0" class="row_heading level0 row0" >fixed acidity</th>
+      <td id="T_a2be8_row0_col0" class="data row0 col0" >1.000000</td>
+      <td id="T_a2be8_row0_col1" class="data row0 col1" >-0.022159</td>
+      <td id="T_a2be8_row0_col2" class="data row0 col2" >0.283248</td>
+      <td id="T_a2be8_row0_col3" class="data row0 col3" >0.098448</td>
+      <td id="T_a2be8_row0_col4" class="data row0 col4" >0.017915</td>
+      <td id="T_a2be8_row0_col5" class="data row0 col5" >-0.051813</td>
+      <td id="T_a2be8_row0_col6" class="data row0 col6" >0.090352</td>
+      <td id="T_a2be8_row0_col7" class="data row0 col7" >0.269401</td>
+      <td id="T_a2be8_row0_col8" class="data row0 col8" >-0.423450</td>
+      <td id="T_a2be8_row0_col9" class="data row0 col9" >-0.024174</td>
+      <td id="T_a2be8_row0_col10" class="data row0 col10" >-0.125424</td>
+      <td id="T_a2be8_row0_col11" class="data row0 col11" >-0.118615</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row1" class="row_heading level0 row1" >volatile acidity</th>
+      <td id="T_a2be8_row1_col0" class="data row1 col0" >-0.022159</td>
+      <td id="T_a2be8_row1_col1" class="data row1 col1" >1.000000</td>
+      <td id="T_a2be8_row1_col2" class="data row1 col2" >-0.147688</td>
+      <td id="T_a2be8_row1_col3" class="data row1 col3" >0.064137</td>
+      <td id="T_a2be8_row1_col4" class="data row1 col4" >0.076459</td>
+      <td id="T_a2be8_row1_col5" class="data row1 col5" >-0.088009</td>
+      <td id="T_a2be8_row1_col6" class="data row1 col6" >0.085720</td>
+      <td id="T_a2be8_row1_col7" class="data row1 col7" >0.029973</td>
+      <td id="T_a2be8_row1_col8" class="data row1 col8" >-0.029339</td>
+      <td id="T_a2be8_row1_col9" class="data row1 col9" >-0.050048</td>
+      <td id="T_a2be8_row1_col10" class="data row1 col10" >0.062962</td>
+      <td id="T_a2be8_row1_col11" class="data row1 col11" >-0.195553</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row2" class="row_heading level0 row2" >citric acid</th>
+      <td id="T_a2be8_row2_col0" class="data row2 col0" >0.283248</td>
+      <td id="T_a2be8_row2_col1" class="data row2 col1" >-0.147688</td>
+      <td id="T_a2be8_row2_col2" class="data row2 col2" >1.000000</td>
+      <td id="T_a2be8_row2_col3" class="data row2 col3" >0.107066</td>
+      <td id="T_a2be8_row2_col4" class="data row2 col4" >0.127680</td>
+      <td id="T_a2be8_row2_col5" class="data row2 col5" >0.092379</td>
+      <td id="T_a2be8_row2_col6" class="data row2 col6" >0.118290</td>
+      <td id="T_a2be8_row2_col7" class="data row2 col7" >0.160669</td>
+      <td id="T_a2be8_row2_col8" class="data row2 col8" >-0.178773</td>
+      <td id="T_a2be8_row2_col9" class="data row2 col9" >0.064732</td>
+      <td id="T_a2be8_row2_col10" class="data row2 col10" >-0.093406</td>
+      <td id="T_a2be8_row2_col11" class="data row2 col11" >-0.018860</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row3" class="row_heading level0 row3" >residual sugar</th>
+      <td id="T_a2be8_row3_col0" class="data row3 col0" >0.098448</td>
+      <td id="T_a2be8_row3_col1" class="data row3 col1" >0.064137</td>
+      <td id="T_a2be8_row3_col2" class="data row3 col2" >0.107066</td>
+      <td id="T_a2be8_row3_col3" class="data row3 col3" >1.000000</td>
+      <td id="T_a2be8_row3_col4" class="data row3 col4" >0.076111</td>
+      <td id="T_a2be8_row3_col5" class="data row3 col5" >0.280611</td>
+      <td id="T_a2be8_row3_col6" class="data row3 col6" >0.396009</td>
+      <td id="T_a2be8_row3_col7" class="data row3 col7" >0.843845</td>
+      <td id="T_a2be8_row3_col8" class="data row3 col8" >-0.198103</td>
+      <td id="T_a2be8_row3_col9" class="data row3 col9" >-0.029428</td>
+      <td id="T_a2be8_row3_col10" class="data row3 col10" >-0.457366</td>
+      <td id="T_a2be8_row3_col11" class="data row3 col11" >-0.085984</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row4" class="row_heading level0 row4" >chlorides</th>
+      <td id="T_a2be8_row4_col0" class="data row4 col0" >0.017915</td>
+      <td id="T_a2be8_row4_col1" class="data row4 col1" >0.076459</td>
+      <td id="T_a2be8_row4_col2" class="data row4 col2" >0.127680</td>
+      <td id="T_a2be8_row4_col3" class="data row4 col3" >0.076111</td>
+      <td id="T_a2be8_row4_col4" class="data row4 col4" >1.000000</td>
+      <td id="T_a2be8_row4_col5" class="data row4 col5" >0.099581</td>
+      <td id="T_a2be8_row4_col6" class="data row4 col6" >0.192030</td>
+      <td id="T_a2be8_row4_col7" class="data row4 col7" >0.241153</td>
+      <td id="T_a2be8_row4_col8" class="data row4 col8" >-0.097633</td>
+      <td id="T_a2be8_row4_col9" class="data row4 col9" >0.016289</td>
+      <td id="T_a2be8_row4_col10" class="data row4 col10" >-0.349867</td>
+      <td id="T_a2be8_row4_col11" class="data row4 col11" >-0.200642</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row5" class="row_heading level0 row5" >free sulfur dioxide</th>
+      <td id="T_a2be8_row5_col0" class="data row5 col0" >-0.051813</td>
+      <td id="T_a2be8_row5_col1" class="data row5 col1" >-0.088009</td>
+      <td id="T_a2be8_row5_col2" class="data row5 col2" >0.092379</td>
+      <td id="T_a2be8_row5_col3" class="data row5 col3" >0.280611</td>
+      <td id="T_a2be8_row5_col4" class="data row5 col4" >0.099581</td>
+      <td id="T_a2be8_row5_col5" class="data row5 col5" >1.000000</td>
+      <td id="T_a2be8_row5_col6" class="data row5 col6" >0.620482</td>
+      <td id="T_a2be8_row5_col7" class="data row5 col7" >0.282654</td>
+      <td id="T_a2be8_row5_col8" class="data row5 col8" >0.021046</td>
+      <td id="T_a2be8_row5_col9" class="data row5 col9" >0.067162</td>
+      <td id="T_a2be8_row5_col10" class="data row5 col10" >-0.244811</td>
+      <td id="T_a2be8_row5_col11" class="data row5 col11" >0.008141</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row6" class="row_heading level0 row6" >total sulfur dioxide</th>
+      <td id="T_a2be8_row6_col0" class="data row6 col0" >0.090352</td>
+      <td id="T_a2be8_row6_col1" class="data row6 col1" >0.085720</td>
+      <td id="T_a2be8_row6_col2" class="data row6 col2" >0.118290</td>
+      <td id="T_a2be8_row6_col3" class="data row6 col3" >0.396009</td>
+      <td id="T_a2be8_row6_col4" class="data row6 col4" >0.192030</td>
+      <td id="T_a2be8_row6_col5" class="data row6 col5" >0.620482</td>
+      <td id="T_a2be8_row6_col6" class="data row6 col6" >1.000000</td>
+      <td id="T_a2be8_row6_col7" class="data row6 col7" >0.526727</td>
+      <td id="T_a2be8_row6_col8" class="data row6 col8" >0.014098</td>
+      <td id="T_a2be8_row6_col9" class="data row6 col9" >0.135311</td>
+      <td id="T_a2be8_row6_col10" class="data row6 col10" >-0.456719</td>
+      <td id="T_a2be8_row6_col11" class="data row6 col11" >-0.175026</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row7" class="row_heading level0 row7" >density</th>
+      <td id="T_a2be8_row7_col0" class="data row7 col0" >0.269401</td>
+      <td id="T_a2be8_row7_col1" class="data row7 col1" >0.029973</td>
+      <td id="T_a2be8_row7_col2" class="data row7 col2" >0.160669</td>
+      <td id="T_a2be8_row7_col3" class="data row7 col3" >0.843845</td>
+      <td id="T_a2be8_row7_col4" class="data row7 col4" >0.241153</td>
+      <td id="T_a2be8_row7_col5" class="data row7 col5" >0.282654</td>
+      <td id="T_a2be8_row7_col6" class="data row7 col6" >0.526727</td>
+      <td id="T_a2be8_row7_col7" class="data row7 col7" >1.000000</td>
+      <td id="T_a2be8_row7_col8" class="data row7 col8" >-0.096938</td>
+      <td id="T_a2be8_row7_col9" class="data row7 col9" >0.071511</td>
+      <td id="T_a2be8_row7_col10" class="data row7 col10" >-0.776427</td>
+      <td id="T_a2be8_row7_col11" class="data row7 col11" >-0.292935</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row8" class="row_heading level0 row8" >pH</th>
+      <td id="T_a2be8_row8_col0" class="data row8 col0" >-0.423450</td>
+      <td id="T_a2be8_row8_col1" class="data row8 col1" >-0.029339</td>
+      <td id="T_a2be8_row8_col2" class="data row8 col2" >-0.178773</td>
+      <td id="T_a2be8_row8_col3" class="data row8 col3" >-0.198103</td>
+      <td id="T_a2be8_row8_col4" class="data row8 col4" >-0.097633</td>
+      <td id="T_a2be8_row8_col5" class="data row8 col5" >0.021046</td>
+      <td id="T_a2be8_row8_col6" class="data row8 col6" >0.014098</td>
+      <td id="T_a2be8_row8_col7" class="data row8 col7" >-0.096938</td>
+      <td id="T_a2be8_row8_col8" class="data row8 col8" >1.000000</td>
+      <td id="T_a2be8_row8_col9" class="data row8 col9" >0.170854</td>
+      <td id="T_a2be8_row8_col10" class="data row8 col10" >0.123852</td>
+      <td id="T_a2be8_row8_col11" class="data row8 col11" >0.098827</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row9" class="row_heading level0 row9" >sulphates</th>
+      <td id="T_a2be8_row9_col0" class="data row9 col0" >-0.024174</td>
+      <td id="T_a2be8_row9_col1" class="data row9 col1" >-0.050048</td>
+      <td id="T_a2be8_row9_col2" class="data row9 col2" >0.064732</td>
+      <td id="T_a2be8_row9_col3" class="data row9 col3" >-0.029428</td>
+      <td id="T_a2be8_row9_col4" class="data row9 col4" >0.016289</td>
+      <td id="T_a2be8_row9_col5" class="data row9 col5" >0.067162</td>
+      <td id="T_a2be8_row9_col6" class="data row9 col6" >0.135311</td>
+      <td id="T_a2be8_row9_col7" class="data row9 col7" >0.071511</td>
+      <td id="T_a2be8_row9_col8" class="data row9 col8" >0.170854</td>
+      <td id="T_a2be8_row9_col9" class="data row9 col9" >1.000000</td>
+      <td id="T_a2be8_row9_col10" class="data row9 col10" >-0.014943</td>
+      <td id="T_a2be8_row9_col11" class="data row9 col11" >0.070664</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row10" class="row_heading level0 row10" >alcohol</th>
+      <td id="T_a2be8_row10_col0" class="data row10 col0" >-0.125424</td>
+      <td id="T_a2be8_row10_col1" class="data row10 col1" >0.062962</td>
+      <td id="T_a2be8_row10_col2" class="data row10 col2" >-0.093406</td>
+      <td id="T_a2be8_row10_col3" class="data row10 col3" >-0.457366</td>
+      <td id="T_a2be8_row10_col4" class="data row10 col4" >-0.349867</td>
+      <td id="T_a2be8_row10_col5" class="data row10 col5" >-0.244811</td>
+      <td id="T_a2be8_row10_col6" class="data row10 col6" >-0.456719</td>
+      <td id="T_a2be8_row10_col7" class="data row10 col7" >-0.776427</td>
+      <td id="T_a2be8_row10_col8" class="data row10 col8" >0.123852</td>
+      <td id="T_a2be8_row10_col9" class="data row10 col9" >-0.014943</td>
+      <td id="T_a2be8_row10_col10" class="data row10 col10" >1.000000</td>
+      <td id="T_a2be8_row10_col11" class="data row10 col11" >0.428870</td>
+    </tr>
+    <tr>
+      <th id="T_a2be8_level0_row11" class="row_heading level0 row11" >quality</th>
+      <td id="T_a2be8_row11_col0" class="data row11 col0" >-0.118615</td>
+      <td id="T_a2be8_row11_col1" class="data row11 col1" >-0.195553</td>
+      <td id="T_a2be8_row11_col2" class="data row11 col2" >-0.018860</td>
+      <td id="T_a2be8_row11_col3" class="data row11 col3" >-0.085984</td>
+      <td id="T_a2be8_row11_col4" class="data row11 col4" >-0.200642</td>
+      <td id="T_a2be8_row11_col5" class="data row11 col5" >0.008141</td>
+      <td id="T_a2be8_row11_col6" class="data row11 col6" >-0.175026</td>
+      <td id="T_a2be8_row11_col7" class="data row11 col7" >-0.292935</td>
+      <td id="T_a2be8_row11_col8" class="data row11 col8" >0.098827</td>
+      <td id="T_a2be8_row11_col9" class="data row11 col9" >0.070664</td>
+      <td id="T_a2be8_row11_col10" class="data row11 col10" >0.428870</td>
+      <td id="T_a2be8_row11_col11" class="data row11 col11" >1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>From the correlation plot above, it turns out that among explanatory features, density and residual sugar are highly correlated (0.844); density and total sulfur dioxide are highly correlated(0.527); total sulfur dioxide and free sulfur dioxide are highly correlated (0.620).</p>
+<p>Since the free SO2 is the active, unbound form that contributes to antioxidant and antimicrobial properties, and the Total SO2 includes both free and bound forms, providing an overall measure of sulfur dioxide content in the win, we drop the free sulfur dioxide from the data.</p>
+<p>Let’s examine the relationship between the three highly correlated features with target variable by scatter plot matrix, figure 1, as shown below:</p>
+<figure class="align-default" id="scatter-plot-matrix">
+<a class="reference internal image-reference" href="_images/scatter_matrix.png"><img alt="_images/scatter_matrix.png" src="_images/scatter_matrix.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Scatter Plot Matrix indicating correlation between three highly correlated features with target variable</span><a class="headerlink" href="#scatter-plot-matrix" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>From figure 1, since both residual sugar, density, and total sulfur dioxide have correlation with the target quality, it is not a good idea to drop these correlated features.  Instead, we pick the <strong>polynomial regression with ridge regularization</strong> to reduce multicolinearity, and use <strong>Random search</strong> to optimize the hyperparamters.</p>
+<p>The reason we use polynomial regression rather than a linear regression is that in the real world scenario with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality.</p>
+<p>Now lets examine the distribution of the features to decide how to preprocess them:</p>
+<p>Distribution histogram of some of the varaibles are shown below. From figures below, most of the features follow an approximately normal distribution, while the residual sugar is slightly skewed. Given the distribution of the features, we preprocess the data by <strong>standardization and imputation with median value</strong>.</p>
+<figure class="align-default" id="alcohol-histogram">
+<a class="reference internal image-reference" href="_images/histogram_alcohol.png"><img alt="_images/histogram_alcohol.png" src="_images/histogram_alcohol.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Histogram for the feature, alcohol</span><a class="headerlink" href="#alcohol-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="chlorides-histogram">
+<a class="reference internal image-reference" href="_images/histogram_chlorides.png"><img alt="_images/histogram_chlorides.png" src="_images/histogram_chlorides.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Histogram for the feature, chlorides</span><a class="headerlink" href="#chlorides-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="density-histogram">
+<a class="reference internal image-reference" href="_images/histogram_density.png"><img alt="_images/histogram_density.png" src="_images/histogram_density.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Histogram for the feature, density</span><a class="headerlink" href="#density-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="ph-histogram">
+<a class="reference internal image-reference" href="_images/histogram_pH.png"><img alt="_images/histogram_pH.png" src="_images/histogram_pH.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Histogram for the feature, pH</span><a class="headerlink" href="#ph-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="quality-histogram">
+<a class="reference internal image-reference" href="_images/histogram_quality.png"><img alt="_images/histogram_quality.png" src="_images/histogram_quality.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Histogram for the feature, quality</span><a class="headerlink" href="#quality-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="sulphates-histogram">
+<a class="reference internal image-reference" href="_images/histogram_sulphates.png"><img alt="_images/histogram_sulphates.png" src="_images/histogram_sulphates.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Histogram for the feature, sulphates</span><a class="headerlink" href="#sulphates-histogram" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Below is our model pipeline with parameters for the best model, which consits of columntransformer: SimpleImputer, StandardScaler and PolynomialFeatures, and our regression model, Ridge.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;pipeline&#x27;,
+                                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;standardscaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  [&#x27;fixed acidity&#x27;,
+                                                   &#x27;volatile acidity&#x27;,
+                                                   &#x27;citric acid&#x27;,
+                                                   &#x27;residual sugar&#x27;,
+                                                   &#x27;chlorides&#x27;,
+                                                   &#x27;total sulfur dioxide&#x27;,
+                                                   &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;,
+                                                   &#x27;alcohol&#x27;]),
+                                                 (&#x27;polynomialfeatures&#x27;,
+                                                  PolynomialFeatures(degree=3),
+                                                  [&#x27;fixed acidity&#x27;,
+                                                   &#x27;volatile acidity&#x27;,
+                                                   &#x27;citric acid&#x27;,
+                                                   &#x27;residual sugar&#x27;,
+                                                   &#x27;chlorides&#x27;,
+                                                   &#x27;total sulfur dioxide&#x27;,
+                                                   &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;,
+                                                   &#x27;alcohol&#x27;])])),
+                (&#x27;ridge&#x27;, Ridge(alpha=26.826957952797247))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;pipeline&#x27;,
+                                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;standardscaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  [&#x27;fixed acidity&#x27;,
+                                                   &#x27;volatile acidity&#x27;,
+                                                   &#x27;citric acid&#x27;,
+                                                   &#x27;residual sugar&#x27;,
+                                                   &#x27;chlorides&#x27;,
+                                                   &#x27;total sulfur dioxide&#x27;,
+                                                   &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;,
+                                                   &#x27;alcohol&#x27;]),
+                                                 (&#x27;polynomialfeatures&#x27;,
+                                                  PolynomialFeatures(degree=3),
+                                                  [&#x27;fixed acidity&#x27;,
+                                                   &#x27;volatile acidity&#x27;,
+                                                   &#x27;citric acid&#x27;,
+                                                   &#x27;residual sugar&#x27;,
+                                                   &#x27;chlorides&#x27;,
+                                                   &#x27;total sulfur dioxide&#x27;,
+                                                   &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;,
+                                                   &#x27;alcohol&#x27;])])),
+                (&#x27;ridge&#x27;, Ridge(alpha=26.826957952797247))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;pipeline&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;fixed acidity&#x27;, &#x27;volatile acidity&#x27;,
+                                  &#x27;citric acid&#x27;, &#x27;residual sugar&#x27;, &#x27;chlorides&#x27;,
+                                  &#x27;total sulfur dioxide&#x27;, &#x27;density&#x27;, &#x27;pH&#x27;,
+                                  &#x27;sulphates&#x27;, &#x27;alcohol&#x27;]),
+                                (&#x27;polynomialfeatures&#x27;,
+                                 PolynomialFeatures(degree=3),
+                                 [&#x27;fixed acidity&#x27;, &#x27;volatile acidity&#x27;,
+                                  &#x27;citric acid&#x27;, &#x27;residual sugar&#x27;, &#x27;chlorides&#x27;,
+                                  &#x27;total sulfur dioxide&#x27;, &#x27;density&#x27;, &#x27;pH&#x27;,
+                                  &#x27;sulphates&#x27;, &#x27;alcohol&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline</label><div class="sk-toggleable__content"><pre>[&#x27;fixed acidity&#x27;, &#x27;volatile acidity&#x27;, &#x27;citric acid&#x27;, &#x27;residual sugar&#x27;, &#x27;chlorides&#x27;, &#x27;total sulfur dioxide&#x27;, &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;, &#x27;alcohol&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">polynomialfeatures</label><div class="sk-toggleable__content"><pre>[&#x27;fixed acidity&#x27;, &#x27;volatile acidity&#x27;, &#x27;citric acid&#x27;, &#x27;residual sugar&#x27;, &#x27;chlorides&#x27;, &#x27;total sulfur dioxide&#x27;, &#x27;density&#x27;, &#x27;pH&#x27;, &#x27;sulphates&#x27;, &#x27;alcohol&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">PolynomialFeatures</label><div class="sk-toggleable__content"><pre>PolynomialFeatures(degree=3)</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge(alpha=26.826957952797247)</pre></div></div></div></div></div></div></div></div></div>
+</div>
+<p>And the below is our Cross-Validation scores for training data set.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fit_time</th>
+      <td>0.023944</td>
+      <td>0.013026</td>
+      <td>0.012648</td>
+      <td>0.015523</td>
+      <td>0.014615</td>
+    </tr>
+    <tr>
+      <th>score_time</th>
+      <td>0.007685</td>
+      <td>0.006513</td>
+      <td>0.006672</td>
+      <td>0.007515</td>
+      <td>0.005942</td>
+    </tr>
+    <tr>
+      <th>test_r2</th>
+      <td>0.315056</td>
+      <td>0.356524</td>
+      <td>0.352406</td>
+      <td>0.317041</td>
+      <td>0.289271</td>
+    </tr>
+    <tr>
+      <th>train_r2</th>
+      <td>0.363229</td>
+      <td>0.353133</td>
+      <td>0.351876</td>
+      <td>0.360865</td>
+      <td>0.368786</td>
+    </tr>
+    <tr>
+      <th>test_sklearn MAPE</th>
+      <td>-0.097206</td>
+      <td>-0.102735</td>
+      <td>-0.096511</td>
+      <td>-0.103330</td>
+      <td>-0.102554</td>
+    </tr>
+    <tr>
+      <th>train_sklearn MAPE</th>
+      <td>-0.098717</td>
+      <td>-0.097416</td>
+      <td>-0.099154</td>
+      <td>-0.097670</td>
+      <td>-0.097268</td>
+    </tr>
+    <tr>
+      <th>test_neg_root_mean_square_error</th>
+      <td>-0.720164</td>
+      <td>-0.741907</td>
+      <td>-0.716911</td>
+      <td>-0.734411</td>
+      <td>-0.752460</td>
+    </tr>
+    <tr>
+      <th>train_neg_root_mean_square_error</th>
+      <td>-0.717869</td>
+      <td>-0.712449</td>
+      <td>-0.720107</td>
+      <td>-0.715402</td>
+      <td>-0.710361</td>
+    </tr>
+    <tr>
+      <th>test_neg_mean_squared_error</th>
+      <td>-0.518636</td>
+      <td>-0.550426</td>
+      <td>-0.513962</td>
+      <td>-0.539360</td>
+      <td>-0.566196</td>
+    </tr>
+    <tr>
+      <th>train_neg_mean_squared_error</th>
+      <td>-0.515336</td>
+      <td>-0.507584</td>
+      <td>-0.518555</td>
+      <td>-0.511800</td>
+      <td>-0.504613</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And also the average error across 5 folds.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fit_time</th>
+      <td>0.015951</td>
+    </tr>
+    <tr>
+      <th>score_time</th>
+      <td>0.006865</td>
+    </tr>
+    <tr>
+      <th>test_r2</th>
+      <td>0.326060</td>
+    </tr>
+    <tr>
+      <th>train_r2</th>
+      <td>0.359578</td>
+    </tr>
+    <tr>
+      <th>test_sklearn MAPE</th>
+      <td>-0.100467</td>
+    </tr>
+    <tr>
+      <th>train_sklearn MAPE</th>
+      <td>-0.098045</td>
+    </tr>
+    <tr>
+      <th>test_neg_root_mean_square_error</th>
+      <td>-0.733171</td>
+    </tr>
+    <tr>
+      <th>train_neg_root_mean_square_error</th>
+      <td>-0.715238</td>
+    </tr>
+    <tr>
+      <th>test_neg_mean_squared_error</th>
+      <td>-0.537716</td>
+    </tr>
+    <tr>
+      <th>train_neg_mean_squared_error</th>
+      <td>-0.511578</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="result">
+<h1>Result<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h1>
+<p><strong>Model Performance</strong>:</p>
+<p>R-squared (test): The model explains around <span class="pasted-text">0.36</span> of the variance in the wine quality on the test set, indicating some predictive capability, even it’s not good enough.</p>
+<p>R-squared (train): A higher value (around <span class="pasted-text">0.36</span>) on the training set suggests some fit of the model to the training data, but still can’t perform well.</p>
+<p><strong>Error Metrics</strong>:</p>
+<p>Negative RMSE (test): The model’s root mean square error on the test set is approximately <span class="pasted-text">-0.73</span>, but given the negative sign, it suggests that the model performs worse than predicting the mean value.</p>
+<p>Negative RMSE (train): Similar to the test set, the negative RMSE on the training data is around <span class="pasted-text">-0.72</span>, indicating room for improvement.</p>
+<p>Negative MSE (test &amp; train): Both test and training set MSEs are negative, signifying a worse performance than a model predicting the mean.</p>
+<p>Mean Absolute Percentage Error (MAPE) &amp;
+Negative MAPE (test &amp; train): Both test and training set MAPE values are negative, indicating inaccuracies in predictions beyond simply predicting the mean.t very high.</p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<span class="target" id="id1"></span><p>Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. Decision Support Systems. DOI: <a class="reference external" href="https://doi.org/10.24432/C56S3T">https://doi.org/10.24432/C56S3T</a></p>
+<p>Dua, Dheeru, and Casey Graff. 2019. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. <a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a>.</p>
+<p>WSET Global. (n.d.). WSET systematic approach to tasting (SAT). Retrieved from <a class="reference external" href="https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/ed:">https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/ed:</a>
+Mystery Tasting. (n.d.). WSET SAT explained. Retrieved from <a class="reference external" href="https://www.mysterytasting.com/wset-sat-explainace">https://www.mysterytasting.com/wset-sat-explainace</a>.</p>
+<p>MDS-2023-24. (2023). MDS Lecture Notes on GitHub repository. Retrieved from <a class="reference external" href="https://github.ubc.ca/MDS-2023-24">https://github.ubc.ca/MDS-2023-24</a>.</p>
+<p>Fan, J. (1996). Local Polynomial Modelling and Its Applications: From linear regression to nonlinear regression. Monographs on Statistics and Applied Probability. Chapman &amp; Hall/CRC. ISBN 978-0-412-98321-4.</p>
+<p>Hoerl, A. E. (1962). Application of Ridge Analysis to Regression Problems. Chemical Engineering Progress, 58(3), 54–59.</p>
+<p>van Wieringen, W. (2021, May 31). Lecture notes on ridge regression. arXiv:1509.09169 [<a class="reference external" href="http://stat.ME">stat.ME</a>].</p>
+<p>Tikhonov, A. N., &amp; Arsenin, V. Y. (1977). Solution of Ill-posed Problems. Washington: Winston &amp; Sons. ISBN 0-470-99124-0.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting Portugal white wine quality</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kittipong Wongwipasamitkun, Nicole Tu, Sho Inagaki
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
