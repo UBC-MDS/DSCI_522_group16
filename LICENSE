@@ -17,7 +17,7 @@ The licensor cannot revoke these freedoms as long as you follow the license term
 
 ## Under the following terms:
 
-- **Attribution** — You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Tiffany A. Timbers, Trevor Campbell, Melissa Lee and, where practical, linking to https://datasciencebook.ca/), provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- **Attribution** — You must give appropriate credit (mentioning that your work is derived from work that is Copyright © Kittipong Wongwipasamitkun, Nicole Tu, Sho Inagaki and, where practical, linking to https://github.com/UBC-MDS/portugal_white_wine_quality_predictor_py), provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 - **NonCommercial** — You may not use the material for commercial purposes.
 - **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
@@ -34,7 +34,7 @@ No warranties are given. The license may not give you all of the permissions nec
 
 MIT License
 
-Copyright (c) 2023 Master of Data Science at the University of British Columbia
+Copyright (c) 2023 Kittipong Wongwipasamitkun, Nicole Tu and, Sho Inagaki
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
