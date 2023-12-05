@@ -35,17 +35,4 @@ if __name__ == '__main__':
     download_and_extract_data()
     
 # Use in terminal:
-# python download_and_extract_data.py <url> <target_folder>
-
-# Use in Jupyter:
-# download data as zip and extract
-#url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
-#download_and_extract_data(url, "../data/raw")
-
-#original code for download_and_extract_data(): 
-# url = "https://archive.ics.uci.edu/static/public/186/wine+quality.zip"
-# request = requests.get(url)
-# with open("../data/raw/wine+quality.zip", 'wb') as f:
-#     f.write(request.content)
-# with zipfile.ZipFile("../data/raw/wine+quality.zip", 'r') as zip_ref:
-#     zip_ref.extractall("../data/raw")
+# python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/raw
