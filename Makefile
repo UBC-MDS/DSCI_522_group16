@@ -10,11 +10,17 @@ data/Raw/wine+quality.zip : script/download_and_extract_data.py
 # read_split_and_save data:
 data/Processed/white_train.csv data/Processed/white_test.csv : data/Raw/winequality-white.csv script/read_split_and_save.py
     python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
-# plot word count
-results/figure/isles.png : results/isles.dat scripts/plotcount.py
-    python scripts/plotcount.py --input_file=results/isles.dat --output_file=isles.png
-results/figure/abyss.png : results/abyss.dat scripts/plotcount.py
-    python scripts/plotcount.py --input_file=results/abyss.dat --output_file=abyss.png
+
+#EDA:
+results/figures/%.png: script/eda.py data/Processed/white_train.csv
+	python script/eda.py data/Processed/white_train.csv
+
+#Fit polynomial models:
+data/Processed/x_train_w.csv data/Processed/x_test_w.csv data/Processed/y_train_w.csv data/Processed/y_test_w.csv results/models/best_model.pkl : \
+    data/Processed/white_train.csv \
+    data/Processed/white_test.csv \
+    script/fit_polynomial_regression.py
+    python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
 
 report/_build/html/index.html : report/count_report.ipynb \
 report/_toc.yml \
