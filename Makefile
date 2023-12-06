@@ -12,27 +12,36 @@ data/Processed/white_train.csv data/Processed/white_test.csv : data/Raw/winequal
     python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
 
 #EDA:
-results/figures/%.png: script/eda.py data/Processed/white_train.csv
+results/figures/%.png results/tables/correlation_matrix.csv: script/eda.py data/Processed/white_train.csv
 	python script/eda.py data/Processed/white_train.csv
 
 #Fit polynomial models:
 data/Processed/x_train_w.csv data/Processed/x_test_w.csv data/Processed/y_train_w.csv data/Processed/y_test_w.csv results/models/best_model.pkl : \
-    data/Processed/white_train.csv \
-    data/Processed/white_test.csv \
-    script/fit_polynomial_regression.py
+data/Processed/white_train.csv \
+data/Processed/white_test.csv \
+script/fit_polynomial_regression.py
     python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
 
-report/_build/html/index.html : report/count_report.ipynb \
-report/_toc.yml \
-report/_config.yml \
-results/figure/isles.png \
-results/figure/abyss.png 
+#Evaluate model:
+results/tables/score_table.csv results/tables/mean_scores.csv : script/evaluate_model.py \
+results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv   
+	python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
+
+
+report/_build/html/index.html : report/portugal_white_wine_quality_predictor_report.ipynb \
+                                 report/_toc.yml \
+                                 report/_config.yml \
+                                 results/figure/%%.png
+    mkdir -p report/_build/html/
     jupyter-book build report
 
+
+
 clean :
-# remove all .dat files in results directory
-    rm -f results/*.dat   
+# remove all .csv files in results/tables directory
+    rm -f results/tables/*.csv   
 # remove all .png fules in results.figure directory
     rm -f results/figure/*.png
+	rm -f results/models/*.pkl
     rm -rf report/_build
 
