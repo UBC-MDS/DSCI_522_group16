@@ -25,5 +25,5 @@ RUN conda install -y python=3.11.6 \
     pip=23.1.2 \
     nb_conda_kernels=2.3.1 \
     numpy=1.25.2 \
-    altair==5.1.2 \
+    altair=5.1.2 \
     notebook=7.0.6 -c conda-forge
