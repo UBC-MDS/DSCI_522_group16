@@ -72,7 +72,7 @@ def eda_script(file_path):
     scatter_matrix_path = os.path.join(script_dir, '..', 'results', 'figures', 'scatter_matrix.png')
     os.makedirs(os.path.dirname(scatter_matrix_path), exist_ok=True)
     chart.save(scatter_matrix_path)
-
+    
     # Create a histogram for each column
     for column in white_train.columns:
         plt.figure(figsize=(8, 6))
