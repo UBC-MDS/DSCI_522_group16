@@ -62,7 +62,7 @@ docker-compose run --rm analysis-env make all
 docker-compose up analysis-env
 ```
 
-2. After executed the above command, in your terminal, please copy the URL that start with http://127.0.0.1:8888/lab?token= and paste it into your browser
+2. After executed the above command, in your terminal, please copy the URL that start with ```http://127.0.0.1:8888/lab?token=``` and paste it into your browser
 
 3. In your browser, you should see the Jupyter Lab IDE, with all the project files visible in the file browser panel on the left side of the screen.
 
