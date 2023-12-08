@@ -18,7 +18,7 @@ This data set used in this project is related to white vinho verde wine samples 
 
 
 ## Report
-The final report can be found [here](https://rawcdn.githack.com/UBC-MDS/portugal_white_wine_quality_predictor_py/8f098a7da456a3dcbe0863817da5203760776339/report/_build/_page/portugal_white_wine_quality_predictor_report/html/portugal_white_wine_quality_predictor_report.html).
+The final report can be found [here](https://ubc-mds.github.io/portugal_white_wine_quality_predictor_py/portugal_white_wine_quality_predictor_report.html).
 
 
 ## Dependencies
@@ -26,6 +26,8 @@ We use [Docker](https://docker.com) to build the container to manage the softwar
 
 
 ## Usage
+
+This instruction guides you to reproduce the analysis
 
 #### SET UP
 
@@ -36,72 +38,54 @@ To run the project first time, you should be
 2. Then you should clone this GitHub repository.
 
 
-#### HOW TO RUN THE ANALYSIS
+#### RUN THE ANALYSIS
 
-1. By using command line terminal, please go to the clone repository directory on your local machine and enter the following command:
+1. By using command line terminal, please go to the clone repository directory on your local machine and enter the following command to reset the project to a clean state:
 
 ``` 
-docker compose up
+docker-compose run --rm analysis-env make clean
 ```
 
-2. After executed the above command, in your terminal, please copy the URL that start with `http://127.0.0.1:8888/lab?token=` and paste it into your browser
+2. After executed the above command, at your terminal in your project root, please run this command to run all the entirety of the project:
 
-3. Run the analysis,
-In the command terminal at the repository directory in your local machine, enter the following command:
-
-#### download and extract data:
-python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/Raw
-Need to mannual unzip the zip file and put wine+quality.csv under data/Raw before next step.
-
-#### assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.
-python script/read_split_and_save.py data/Raw/winequality-white.csv --dropna --info --split-data
-
-#### perform eda and save plots:
-python script/eda.py data/Processed/white_train.csv
-
-#### train model, find best parameters, and save the model:
-python script/fit_polynomial_regression.py data/Processed/white_train.csv data/Processed/white_test.csv
-
-#### evaluate the model with best parameters on train data and save the scores:
-python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
-
-#### evaluate the model on test data and save results:
-python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
-
-#### build HTML report and copy build to docs folder
-jupyter-book build report
-
-cp -r report/_build/html/* docs
-
-
-#### Clean up (Shut down the container and clean up the resources) 
-
-In the terminal where you used the container, type `Cntrl` + `C`, follow by type `docker compose rm`
-
-> #### Note
-> There is an alternative way via VS Code to run a one-time command within a service defined in a Docker Compose configuration file. 
-> In VS Code, go to the repository folder and launch the container there by using the command:
->
-> ```
-> docker compose run --rm terminal bash
->```
->
-> After finished, in the terminal, exit the container by type `exit`.
-
+``` 
+docker-compose run --rm analysis-env make all
+```
 
 ## Developer notes
 
+#### Working by Jupyter Lab in the container
+
+1. In the command terminal at the repository directory in your local machine, enter the following command:
+
+``` 
+docker-compose up analysis-env
+```
+
+2. After executed the above command, in your terminal, please copy the URL that start with http://127.0.0.1:8888/lab?token= and paste it into your browser
+
+3. In your browser, you should see the Jupyter Lab IDE, with all the project files visible in the file browser panel on the left side of the screen.
+
+#### Clean up (Shut down the container and clean up the resources)
+
+Press Ctrl + C in the terminal where you set up the container, and then enter the following command:
+
+``` 
+docker-compose rm
+```
+
 #### Adding a new dependency
 
-1. Add the new dependency to the [`environment.yml`](environment.yml) file, on which [`DockerFile`](Dockerfile) file has linked to, on a new branch.
+1. Adjust the dependency in the [`DockerFile`](Dockerfile) on a new branch.
 
-2. In your local machine, re-build the Docker image to ensure it builds and smoothly runs without any problem.
+2. You can try to test first by re-build the Docker image locally to make sure it can run properly without any problem.
 
-3. Push the changes (with pull request if you do it in branch) to the `main` branch on the remote repository (GitHub). 
-   The new Docker image will be constructed and pushed to Docker Hub automatically.
-   There will be tagged with SHA on this commit.
+3. Add commit push the changes Dockerfile to the GitHub and make a pull request to merge the changes into the main branch.
 
-4. It will update the new container image on your branch in the [`docker-compose.yml`](docker-compose.yml) file automatically as it stated as the latest.
+4. A new Dockerfile will build a new Docker image and will push to Docker Hub automatically.
+
+5. It will update the new container image on your branch in the [`docker-compose.yml`](docker-compose.yml) file automatically as it stated as the latest.
+
 
 #### Running the tests
 
