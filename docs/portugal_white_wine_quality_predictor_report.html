@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Predicting Portugal white wine quality &#8212; Predicting Portugal white wine quality</title>
   
@@ -339,86 +339,6 @@ document.write(`
 <p>by Kittipong Wongwipasamitkun, Nicole Tu, Sho Inagaki
 2023/12/02</p>
 <div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pickle</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mean_value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>fit_time</th>
-      <td>0.02</td>
-    </tr>
-    <tr>
-      <th>score_time</th>
-      <td>0.01</td>
-    </tr>
-    <tr>
-      <th>test_r2</th>
-      <td>0.33</td>
-    </tr>
-    <tr>
-      <th>train_r2</th>
-      <td>0.36</td>
-    </tr>
-    <tr>
-      <th>test_sklearn MAPE</th>
-      <td>-0.10</td>
-    </tr>
-    <tr>
-      <th>train_sklearn MAPE</th>
-      <td>-0.10</td>
-    </tr>
-    <tr>
-      <th>test_neg_root_mean_square_error</th>
-      <td>-0.73</td>
-    </tr>
-    <tr>
-      <th>train_neg_root_mean_square_error</th>
-      <td>-0.72</td>
-    </tr>
-    <tr>
-      <th>test_neg_mean_squared_error</th>
-      <td>-0.54</td>
-    </tr>
-    <tr>
-      <th>train_neg_mean_squared_error</th>
-      <td>-0.51</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="summary">
@@ -428,7 +348,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
-<p>Referring to WSET (the Wine &amp; Spirits Education Trust), Wine tasting notes can be described by Systematic Approach to Tasting (SAT) (<a class="reference external" href="https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf">https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf</a>) , which is consisted of</p>
+<p>Referring to WSET (the Wine &amp; Spirits Education Trust), Wine tasting notes can be described by Systematic Approach to Tasting (SAT)<span id="id1">[<a class="reference internal" href="#id14" title="WSET Global. WSET Systematic Approach to Tasting® (SAT). 2023. URL: https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/.">WSET Global, 2023</a>]</span> (<a class="reference external" href="https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf">https://www.wsetglobal.com/media/13271/wset_l4wines_sat_en_aug2023.pdf</a>) , which is consisted of</p>
 <ol class="arabic simple">
 <li><p>Appearance (colour, clarity, intensity, and other observations)</p></li>
 <li><p>Nose (condition, intensity, aroma characteristics, aroma development)</p></li>
@@ -436,31 +356,26 @@ document.write(`
 <li><p>Conclusion (quality, readiness for drinking and potential for ageing).</p></li>
 </ol>
 <p>The wine quality which is in the conclusion part, consists mainly on Balance, Length, Intensity and Complexity (BLIC). The result of these qualities, all came from the chemical components in the wine. Subsequently, nowadays, the quality of wine can be determined roughly from the physicochemical components of the wine.</p>
-<p>As the physicochemical properties have been related to the wine quality, so we aim to create a machine learning algorithm to predict the quality of wine from the measurement of physicochemical values. Answering this question can help both customers and winemakers to screen or adjust or make decision to the prior wine quality rating derived from the model according to its physicochemical values.</p>
+<p>As the physicochemical properties have been related to the wine quality, so we aim to create a machine learning algorithm to predict the quality of wine from the measurement of physicochemical values. Answering this question can help both customers and winemakers to screen or adjust or make decision to the prior wine quality rating derived from the model according to its physicochemical <a class="reference external" href="http://values.ht">values.ht</a></p>
 <p>This machine learning algorithm will aim to study only the Portugal white wine to reduce biased from the types of wine and the origin sources of wine as the start point to assess the quality of wine via its physicochemical features.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="methods">
 <h1>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h1>
 <section id="data">
 <h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
-<p>This data set used in this project is related to white vinho verde wine samples from the north of Portugal created By P. Cortez, A. Cerdeira, Fernando Almeida, Telmo Matos, J. Reis. 2009. The dataset was sourced from  website for downloading these datasets is the UC Irvine Machine Learning Repository (<a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a>). In addition, these datasets stored the physicochemical properties data on wines and the quality rating to compare and make the quality prediction model.</p>
+<p>This data set used in this project is related to white vinho verde wine samples from the north of Portugal created By P. Cortez, A. Cerdeira, Fernando Almeida, Telmo Matos, J. Reis. 2009. The dataset was sourced from  website for downloading these datasets is the UC Irvine Machine Learning Repository <span id="id2">[<a class="reference internal" href="#id13" title="Paulo Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine Quality. UCI Machine Learning Repository, 2009. DOI: https://doi.org/10.24432/C56S3T.">Cortez <em>et al.</em>, 2009</a>]</span> (<a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a>). In addition, these datasets stored the physicochemical properties data on wines and the quality rating to compare and make the quality prediction model.</p>
 </section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
 <p>As we have many variables to concern and most of them have correlation to the target quality, which it is best to not drop these correlated features.
-Also in the real world with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality. The reason we use polynomial regression rather than a linear regression is that it allows us to capture more complex relationships between the predictors and the target variable. By introducing polynomial terms, we can account for non-linear patterns that might exist in the data, enabling the model to better fit the intricacies of wine quality prediction. Moreover, polynomial regression provides greater flexibility, allowing us to uncover potential curvilinear associations between features and the quality of wine, which a linear regression might overlook. This approach enhances our ability to create a more nuanced and accurate predictive model for wine quality assessment.
-Therefore, we choose the <strong>Polynomial regression with ridge regularization</strong> to reduce the effect of multicolinearity, and use <strong>Random search</strong> to optimize the hyperparameters. Data was partitioned by 70% for the training set and 30% for the test set. All variables were standardized just prior to model fitting. The Python programming language (Van Rossum and Drake 2009) and the following Python packages were used to perform the analysis: numpy(Harris et al. 2020), Pandas (McKinney 2010), altair (VanderPlas, 2018), scikit-learn (Pedregosa et al. 2011). The code used to perform the analysis and create this report can be found here: <a class="github reference external" href="https://github.com/UBC-MDS/DSCI_522_group16/tree/main/src/portugal_wine_quality_predictor.ipynb">UBC-MDS/DSCI_522_group16</a></p>
+Also in the real world with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality. The reason we use polynomial regression rather than a linear regression is that it allows us to capture more complex relationships between the predictors and the target variable. By introducing polynomial terms, we can account for non-linear patterns that might exist in the data, enabling the model to better fit the intricacies of wine quality prediction <span id="id3">[<a class="reference internal" href="#id19" title="Andrey N Tikhonov and Vasiliy Y Arsenin. Solutions of ill-posed problems. vh winston &amp; sons. 1977.">Tikhonov and Arsenin, 1977</a>]</span>. Moreover, polynomial regression provides greater flexibility, allowing us to uncover potential curvilinear associations between features and the quality of wine, which a linear regression might overlook. This approach enhances our ability to create a more nuanced and accurate predictive model for wine quality assessment.
+Therefore, we choose the <strong>Polynomial regression with ridge regularization</strong> to reduce the effect of multicolinearity, and use <strong>Random search</strong> to optimize the hyperparameters <span id="id4">[<a class="reference internal" href="#id15" title="MDS UBC. MDS-2023-24. GitHub repository, 2023. URL: https://github.ubc.ca/MDS-2023-24.">MDS UBC, 2023</a>]</span>. Data was partitioned by 70% for the training set and 30% for the test set. All variables were standardized just prior to model fitting. The Python programming language <span id="id5">[<a class="reference internal" href="#id20" title="Guido Van Rossum and Fred L. Drake. Python 3 Reference Manual. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.">Van Rossum and Drake, 2009</a>]</span> and the following Python packages were used to perform the analysis: numpy <span id="id6">[<a class="reference internal" href="#id21" title="Charles R Harris, K Jarrod Millman, Stéfan J van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E Oliphant. Array programming with NumPy. Nature, 585(7825):357–362, 2020. URL: https://doi.org/10.1038/s41586-020-2649-2, doi:10.1038/s41586-020-2649-2.">Harris <em>et al.</em>, 2020</a>]</span>, Pandas, altair <span id="id7">[<a class="reference internal" href="#id23" title="Jake VanderPlas. Altair: interactive statistical visualizations for python. Journal of open source software, 3(7825):1057, 2018. URL: https://doi.org/10.21105/joss.01057, doi:10.21105/joss.01057.">VanderPlas, 2018</a>]</span>, scikit-learn <span id="id8">[<a class="reference internal" href="#id22" title="F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research, 12:2825–2830, 2011.">Pedregosa <em>et al.</em>, 2011</a>]</span>. The code used to perform the analysis and create this report can be found here: <a class="github reference external" href="https://github.com/UBC-MDS/DSCI_522_group16/tree/main/src/portugal_wine_quality_predictor.ipynb">UBC-MDS/DSCI_522_group16</a></p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="discussion">
 <h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
 <p>We tried to find out whether each of the physicochemical properties might be useful to predict the wine quality rating. We examined the data set that it doesn’t have Null value or any adjustment needed for any values. After that we make a correlation matrix for all the variables in this data set to recognize the pattern or choose to drop some variable out.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/correlation_matrix.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 #T_57cef_row0_col0, #T_57cef_row1_col1, #T_57cef_row2_col2, #T_57cef_row3_col3, #T_57cef_row4_col4, #T_57cef_row5_col5, #T_57cef_row6_col6, #T_57cef_row7_col7, #T_57cef_row8_col8, #T_57cef_row9_col9, #T_57cef_row10_col10, #T_57cef_row11_col11 {
@@ -1024,10 +939,10 @@ Therefore, we choose the <strong>Polynomial regression with ridge regularization
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Scatter Plot Matrix indicating correlation between three highly correlated features with target variable</span><a class="headerlink" href="#scatter-plot-matrix" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>From figure 1, since both residual sugar, density, and total sulfur dioxide have correlation with the target quality, it is not a good idea to drop these correlated features.  Instead, we pick the <strong>polynomial regression with ridge regularization</strong> to reduce multicolinearity, and use <strong>Random search</strong> to optimize the hyperparamters.</p>
-<p>The reason we use polynomial regression rather than a linear regression is that in the real world scenario with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality.</p>
+<p>From figure 1, since both residual sugar, density, and total sulfur dioxide have correlation with the target quality, it is not a good idea to drop these correlated features.  Instead, we pick the <strong>polynomial regression with ridge regularization</strong> to reduce multicolinearity, and use <strong>Random search</strong> to optimize the hyperparamters <span id="id9">[<a class="reference internal" href="#id17" title="AE Horel. Application of ridge analysis to regression problems. Chemical Engineering Progress, 58:54–59, 1962.">Horel, 1962</a>]</span>.</p>
+<p>The reason we use polynomial regression rather than a linear regression is that in the real world scenario with multiple explanatory variables, it is less likely for model to have a linear pattern, and we believe that polynomial regression can be a more realistic model to predict wine quality <span id="id10">[<a class="reference internal" href="#id16" title="Jianqing Fan and I Gijbels. 1.1 from linear regression to nonlinear regression. Local Polynomial Modelling, 1996.">Fan and Gijbels, 1996</a>]</span>.</p>
 <p>Now lets examine the distribution of the features to decide how to preprocess them:</p>
-<p>Distribution histogram of some of the varaibles are shown below. From figures below, most of the features follow an approximately normal distribution, while the residual sugar is slightly skewed. Given the distribution of the features, we preprocess the data by <strong>standardization and imputation with median value</strong>.</p>
+<p>Distribution histogram of some of the varaibles are shown below. From figures below, most of the features follow an approximately normal distribution, while the residual sugar is slightly skewed. Given the distribution of the features, we preprocess the data by <strong>standardization and imputation with median value</strong> <span id="id11">[<a class="reference internal" href="#id18" title="Wessel N van Wieringen. Lecture notes on ridge regression. arXiv preprint arXiv:1509.09169, 2015.">van Wieringen, 2015</a>]</span>.</p>
 <figure class="align-default" id="alcohol-histogram">
 <a class="reference internal image-reference" href="_images/histogram_alcohol.png"><img alt="_images/histogram_alcohol.png" src="_images/histogram_alcohol.png" style="width: 800px;" /></a>
 <figcaption>
@@ -1327,15 +1242,43 @@ Therefore, we choose the <strong>Polynomial regression with ridge regularization
 Negative MAPE (test &amp; train): Both test and training set MAPE values are negative, indicating inaccuracies in predictions beyond simply predicting the mean.t very high.</p>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<span class="target" id="id1"></span><p>Cortez, P., Cerdeira, A., Almeida, F., Matos, T., &amp; Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. Decision Support Systems. DOI: <a class="reference external" href="https://doi.org/10.24432/C56S3T">https://doi.org/10.24432/C56S3T</a></p>
-<p>Dua, Dheeru, and Casey Graff. 2019. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. <a class="reference external" href="https://archive.ics.uci.edu/dataset/186/wine+quality">https://archive.ics.uci.edu/dataset/186/wine+quality</a>.</p>
-<p>WSET Global. (n.d.). WSET systematic approach to tasting (SAT). Retrieved from <a class="reference external" href="https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/ed:">https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/ed:</a>
-Mystery Tasting. (n.d.). WSET SAT explained. Retrieved from <a class="reference external" href="https://www.mysterytasting.com/wset-sat-explainace">https://www.mysterytasting.com/wset-sat-explainace</a>.</p>
-<p>MDS-2023-24. (2023). MDS Lecture Notes on GitHub repository. Retrieved from <a class="reference external" href="https://github.ubc.ca/MDS-2023-24">https://github.ubc.ca/MDS-2023-24</a>.</p>
-<p>Fan, J. (1996). Local Polynomial Modelling and Its Applications: From linear regression to nonlinear regression. Monographs on Statistics and Applied Probability. Chapman &amp; Hall/CRC. ISBN 978-0-412-98321-4.</p>
-<p>Hoerl, A. E. (1962). Application of Ridge Analysis to Regression Problems. Chemical Engineering Progress, 58(3), 54–59.</p>
-<p>van Wieringen, W. (2021, May 31). Lecture notes on ridge regression. arXiv:1509.09169 [<a class="reference external" href="http://stat.ME">stat.ME</a>].</p>
-<p>Tikhonov, A. N., &amp; Arsenin, V. Y. (1977). Solution of Ill-posed Problems. Washington: Winston &amp; Sons. ISBN 0-470-99124-0.</p>
+<div class="docutils container" id="id12">
+<dl class="citation">
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id2">CCA+09</a></span></dt>
+<dd><p>Paulo Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine Quality. UCI Machine Learning Repository, 2009. DOI: <a class="reference external" href="https://doi.org/10.24432/C56S3T">https://doi.org/10.24432/C56S3T</a>.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id10">FG96</a></span></dt>
+<dd><p>Jianqing Fan and I Gijbels. 1.1 from linear regression to nonlinear regression. <em>Local Polynomial Modelling</em>, 1996.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id6">HMvdW+20</a></span></dt>
+<dd><p>Charles R Harris, K Jarrod Millman, Stéfan J van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E Oliphant. Array programming with NumPy. <em>Nature</em>, 585(7825):357–362, 2020. URL: <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">https://doi.org/10.1038/s41586-020-2649-2</a>, <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">doi:10.1038/s41586-020-2649-2</a>.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id9">Hor62</a></span></dt>
+<dd><p>AE Horel. Application of ridge analysis to regression problems. <em>Chemical Engineering Progress</em>, 58:54–59, 1962.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id8">PVG+11</a></span></dt>
+<dd><p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: Machine Learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id3">TA77</a></span></dt>
+<dd><p>Andrey N Tikhonov and Vasiliy Y Arsenin. Solutions of ill-posed problems. vh winston &amp; sons. 1977.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id5">VRD09</a></span></dt>
+<dd><p>Guido Van Rossum and Fred L. Drake. <em>Python 3 Reference Manual</em>. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id11">vW15</a></span></dt>
+<dd><p>Wessel N van Wieringen. Lecture notes on ridge regression. <em>arXiv preprint arXiv:1509.09169</em>, 2015.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id7">Van18</a></span></dt>
+<dd><p>Jake VanderPlas. Altair: interactive statistical visualizations for python. <em>Journal of open source software</em>, 3(7825):1057, 2018. URL: <a class="reference external" href="https://doi.org/10.21105/joss.01057">https://doi.org/10.21105/joss.01057</a>, <a class="reference external" href="https://doi.org/10.21105/joss.01057">doi:10.21105/joss.01057</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id4">MDSUBC23</a></span></dt>
+<dd><p>MDS UBC. MDS-2023-24. GitHub repository, 2023. URL: <a class="reference external" href="https://github.ubc.ca/MDS-2023-24">https://github.ubc.ca/MDS-2023-24</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id1">WSETGlobal23</a></span></dt>
+<dd><p>WSET Global. WSET Systematic Approach to Tasting® (SAT). 2023. URL: <a class="reference external" href="https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/">https://www.wsetglobal.com/knowledge-centre/wset-systematic-approach-to-tasting-sat/</a>.</p>
+</dd>
+</dl>
+</div>
 </section>
 </section>
 
