@@ -24,4 +24,5 @@ dependencies:
   - myst-nb=0.17.2 
   - pip=23.1.2
   - nb_conda_kernels=2.3.1
+  - make
   - numpy=1.25.2
