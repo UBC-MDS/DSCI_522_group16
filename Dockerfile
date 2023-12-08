@@ -32,3 +32,5 @@ RUN conda install -y \
     numpy=1.25.2 \
     altair=5.1.2 \
     notebook=7.0.6 -c conda-forge
+
+RUN echo "make all is working now"
