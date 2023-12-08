@@ -50,7 +50,7 @@ docker compose up
 In the command terminal at the repository directory in your local machine, enter the following command:
 
 #### download and extract data:
-python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/raw
+python script/download_and_extract_data.py https://archive.ics.uci.edu/static/public/186/wine+quality.zip data/Raw
 Need to mannual unzip the zip file and put wine+quality.csv under data/Raw before next step.
 
 #### assume you want to drop NA values, display dataset information, and split the data into train and test sets based on the options in your script.

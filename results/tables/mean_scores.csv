@@ -1,11 +1,11 @@
 ,mean_value
-fit_time,0.013654041290283202
-score_time,0.004580307006835938
-test_r2,0.32191046845276056
-train_r2,0.3586136466540535
-test_sklearn MAPE,-0.10064509072132193
-train_sklearn MAPE,-0.09813865321548504
-test_neg_root_mean_square_error,-0.73539401042865
-train_neg_root_mean_square_error,-0.715775771007236
-test_neg_mean_squared_error,-0.54099693303177
-train_neg_mean_squared_error,-0.5123474949804859
+fit_time,0.018596458435058593
+score_time,0.0011204719543457032
+test_r2,0.33354648096569217
+train_r2,0.39768621367803403
+test_sklearn MAPE,-0.09978364348609706
+train_sklearn MAPE,-0.09491729978843093
+test_neg_root_mean_square_error,-0.7289771164307732
+train_neg_root_mean_square_error,-0.6936287134247632
+test_neg_mean_squared_error,-0.5315335545050666
+train_neg_mean_squared_error,-0.48112826386119883
