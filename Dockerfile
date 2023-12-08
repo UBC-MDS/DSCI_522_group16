@@ -12,7 +12,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 USER $NB_UID
-RUN conda install -y python=3.11.6 \
+RUN conda install -y \
+    python=3.11.6 \
     ipykernel=6.26.0 \
     matplotlib=3.8.2 \
     pandas=2.1.3 \
