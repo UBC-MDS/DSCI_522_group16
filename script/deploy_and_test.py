@@ -8,7 +8,7 @@ import os
 @click.argument('model_file', type=click.Path(exists=True))
 @click.argument('x_test_file', type=click.Path(exists=True))
 @click.argument('y_test_file', type=click.Path(exists=True))
-def test_and_deploy(model_file, x_test_file, y_test_file):
+def deploy_and_test(model_file, x_test_file, y_test_file):
     """
     Test the best polynomial regression model and return test scores.
 
@@ -50,7 +50,7 @@ def test_and_deploy(model_file, x_test_file, y_test_file):
     print(test_scores)
 
 if __name__ == '__main__':
-    test_and_deploy()
+    deploy_and_test()
 
 # In terminal at root directory of the project:
-# python script/test_and_deploy.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+# python script/deploy_and_test.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv

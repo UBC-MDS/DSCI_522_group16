@@ -33,6 +33,11 @@ results/tables/score_table.csv results/tables/mean_scores.csv : script/evaluate_
 	results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv   
 	python script/evaluate_model.py results/models/best_model.pkl data/Processed/x_train_w.csv data/Processed/y_train_w.csv
 
+#Deploy and test model:
+results/tables/test_scores.csv: script/deploy_and_test.py \
+	results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+	python script/deploy_and_test.py results/models/best_model.pkl data/Processed/x_test_w.csv data/Processed/y_test_w.csv
+
 report/_build/html/index.html : report/portugal_white_wine_quality_predictor_report.ipynb \
     report/_toc.yml \
     report/_config.yml \
@@ -56,4 +61,5 @@ clean:
 # to get the correlation matrix table of features: make results/tables/correlation_matrix.csv
 # to fit the polynomial model: make data/Processed/x_train_w.csv data/Processed/x_test_w.csv data/Processed/y_train_w.csv data/Processed/y_test_w.csv results/models/best_model.pkl
 # to evaluate the model and obtain the score tables: make results/tables/score_table.csv results/tables/mean_scores.csv
+# to deploy and test model: make results/tables/test_scores.csv
 # clean all results and processed data by: make clean 
