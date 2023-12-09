@@ -9,12 +9,15 @@
 - Remove 5 numbers in the beginning of the report
 - Fixed eda.py so that it runs in the current environment
 - Address script error when running scripts on the terminal
-- Update README.md for easier navigation
+- Update README.md for easier navigation and comply with all the changes.
 - Updated License file
 - Updated Reference section and BibTex file so that all references are auto generated
-- Clean up the repo structure by removing unnecessarily files
+- Cleaned up the repo structure by removing unnecessarily files and updated .gitignore to prevent it
 - Makefile
 - Updated docker-compose.yml and changed the calling service to be `analysis-env`
+- Updated Dockerfile to comply with make command
+- Updated CONTRIBUTING.md and CODE_OF_CONDUCT.md
+- Updated report on introduction part to clearly state the motivation of the analysis
 
 ### The below link lists improvements that we made. Some of tasks include the link to the commits that we made for that particular tasks.
 
