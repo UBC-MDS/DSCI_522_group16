@@ -42,7 +42,12 @@ results/tables/test_scores.csv: script/deploy_and_test.py \
 report/_build/html/index.html : report/portugal_white_wine_quality_predictor_report.ipynb \
 report/_toc.yml \
 report/_config.yml \
-results/figures/%.png
+results/figures/%.png \
+results/models/best_model.pkl \
+results/tables/score_table.csv \
+results/tables/test_scores.csv \
+results/tables/mean_scores.csv \
+results/tables/correlation_matrix.csv
 	jupyter-book build report
 	cp -r report/_build/html/* docs
 	if [ ! -f ".nojekyll" ]; then touch docs/.nojekyll; fi
